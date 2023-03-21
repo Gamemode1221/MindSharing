@@ -1,4 +1,4 @@
-package com.spring;
+package com.spring.entity;
 
 public class Person {
     private String name;

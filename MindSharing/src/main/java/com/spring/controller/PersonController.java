@@ -1,5 +1,6 @@
-package com.spring;
+package com.spring.controller;
 
+import com.spring.entity.Person;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
