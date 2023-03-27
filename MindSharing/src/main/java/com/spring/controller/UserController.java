@@ -1,33 +1,40 @@
-//package com.spring.controller;
-//
-//import ch.qos.logback.core.model.Model;
-//import com.spring.entity.User;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.PostMapping;
-//
-//@Controller
-//public class UserController {
-//    @Autowired
-//    private UserService userService;
-//
-//    @GetMapping("/signup")
-//    public String showSignUpForm(Model model) {
-//        model.addAttribute("user", new User());
-//        return "signup";
-//    }
-//
-//    @PostMapping("/signup")
-//    public String signUp(@ModelAttribute("user") User user) {
-//        userService.save(user);
-//        return "redirect:/login";
-//    }
-//
-//    @GetMapping("/login")
-//    public String showLoginForm() {
-//        return "login";
-//    }
-//}
-//
+package com.spring.controller;
+
+import com.spring.Form.UserCreateForm;
+import com.spring.Service.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Controller
+@RequestMapping("/user")
+public class UserController {
+
+    private final UserService userService;
+
+    @GetMapping("/signup")
+    public String signup(UserCreateForm userCreateForm) {
+        return "signup_form";
+    }
+
+    @PostMapping("/signup")
+    public String signup(UserCreateForm userCreateForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "signup_form";
+        }
+
+        if (!userCreateForm.getPassword1().equals(userCreateForm.getPassword2())) {
+            bindingResult.rejectValue("password2", "passwordInCorrect",
+                    "2개의 패스워드가 일치하지 않습니다.");
+            return "signup_form";
+        }
+
+        return "redirect:/";
+    }
+}
+
