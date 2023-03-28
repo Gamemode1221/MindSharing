@@ -7,8 +7,8 @@
 <body>
 <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
   <div class="mb-3">
-    <label for="username" class="form-label">사용자ID</label>
-    <input type="text" th:field="*{username}" id="username" class="form-control">
+    <label for="name1" class="form-label">사용자ID</label>
+    <input type="text" th:field="*{name1}" id="name1" class="form-control">
   </div>
   <div class="mb-3">
     <label for="password1" class="form-label">비밀번호</label>
