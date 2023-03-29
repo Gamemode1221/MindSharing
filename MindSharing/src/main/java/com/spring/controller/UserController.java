@@ -2,9 +2,11 @@ package com.spring.controller;
 
 import com.spring.Form.UserCreateForm;
 import com.spring.Service.UserService;
+import com.spring.entity.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,7 +25,8 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String signup(UserCreateForm userCreateForm, BindingResult bindingResult) {
+    public String signup(UserCreateForm userCreateForm, BindingResult bindingResult,
+                         @ModelAttribute Test test) {
         if (bindingResult.hasErrors()) {
             return "signup_form";
         }
@@ -34,7 +37,7 @@ public class UserController {
 //            return "signup_form";
 //        }
 
-        return "redirect:/";
+        return "TestHome";
     }
 }
 
