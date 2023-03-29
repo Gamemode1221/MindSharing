@@ -14,9 +14,9 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder; //빈으로 객체를 받아오게끔
 
-    public Test create(String name1, String password) {
+    public Test create(String name, String password) {
         Test test = new Test();
-        test.setNickname(name1);
+        test.setName(name);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); //시큐리티의 암호화
         test.setPassword(passwordEncoder.encode(password));
         this.userRepository.save(test);

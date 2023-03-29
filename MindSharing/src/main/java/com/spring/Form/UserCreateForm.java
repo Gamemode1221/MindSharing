@@ -10,5 +10,5 @@ public class UserCreateForm {
 
     private String password;
 
-    private String password2;
+    //private String password2;
 }

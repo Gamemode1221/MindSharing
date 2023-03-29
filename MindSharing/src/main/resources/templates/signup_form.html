@@ -5,7 +5,7 @@
   <title>회원가입</title>
 </head>
 <body>
-<form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
+<form th:action th:object="${userCreateForm}" method="post">
 
 <!--  <div class="mb-3">-->
 <!--    <label for="id" class="form-label">ID</label>-->
@@ -14,11 +14,11 @@
 
   <div>
     <label for="name">name</label>
-    <input type="text" th:field="*{name}" id="name" name="name">
+    <input type="text" th:field="*{name}" id="name">
   </div>
   <div>
     <label for="password" >비밀번호</label>
-    <input type="password" th:field="*{password}" id="password" name="password" >
+    <input type="password" th:field="*{password}" id="password">
   </div>
 
 <!--  <div class="mb-3">-->

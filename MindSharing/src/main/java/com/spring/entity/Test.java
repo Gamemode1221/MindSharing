@@ -23,7 +23,12 @@ public class Test {
 
     private String password;
 
-    public void setNickname(String name1) {
+    public Test() {
+    }
+
+    public Test(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 }
 

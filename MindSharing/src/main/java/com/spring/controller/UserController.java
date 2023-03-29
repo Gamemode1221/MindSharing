@@ -1,16 +1,14 @@
 package com.spring.controller;
 
 import com.spring.Form.UserCreateForm;
+import com.spring.Repository.UserRepository;
 import com.spring.Service.UserService;
 import com.spring.entity.Test;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @Controller
@@ -18,18 +16,29 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
     private final UserService userService;
+    private UserRepository userRepository;
 
     @GetMapping("/signup")
-    public String signup(UserCreateForm userCreateForm) {
+    public String signup(UserCreateForm userCreateForm, Model model) {
+
+        model.addAttribute("userCreateForm", userCreateForm);
         return "signup_form";
     }
 
     @PostMapping("/signup")
-    public String signup(UserCreateForm userCreateForm, BindingResult bindingResult,
-                         @ModelAttribute Test test) {
+    @ResponseBody
+    public String signup(@ModelAttribute UserCreateForm userCreateForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "signup_form";
         }
+
+        Test t = new Test();
+
+        t.setName(userCreateForm.getName());
+        t.setPassword(userCreateForm.getPassword());
+
+        t = userRepository.save(t);
+
 
 //        if (!userCreateForm.getPassword1().equals(userCreateForm.getPassword2())) {
 //            bindingResult.rejectValue("password2", "passwordInCorrect",
@@ -37,7 +46,7 @@ public class UserController {
 //            return "signup_form";
 //        }
 
-        return "TestHome";
+        return "name : " + userCreateForm.getName() + ", password : " + userCreateForm.getPassword();
     }
 }
 
