@@ -1,7 +1,7 @@
 package com.spring.Repository;
 
-import com.spring.entity.Users;
+import com.spring.entity.Test;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Users, Long> {
+public interface UserRepository extends JpaRepository<Test, Long> {
 }
