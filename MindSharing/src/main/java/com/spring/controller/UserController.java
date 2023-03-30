@@ -5,6 +5,8 @@ import com.spring.Repository.UserRepository;
 import com.spring.Service.UserService;
 import com.spring.entity.Test;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
     private final UserService userService;
+    @Autowired
     private UserRepository userRepository;
 
     @GetMapping("/signup")
@@ -25,19 +29,15 @@ public class UserController {
         return "signup_form";
     }
 
-    @PostMapping("/signup")
+    @PostMapping(path = "/signup", produces = "application/json")
+//    @PostMapping("/signup")
     @ResponseBody
-    public String signup(@ModelAttribute UserCreateForm userCreateForm, BindingResult bindingResult) {
+    public String signup(@RequestParam String name, @RequestParam String password, @ModelAttribute UserCreateForm userCreateForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "signup_form";
         }
 
-        Test t = new Test();
-
-        t.setName(userCreateForm.getName());
-        t.setPassword(userCreateForm.getPassword());
-
-        t = userRepository.save(t);
+        userService.create(name, password);
 
 
 //        if (!userCreateForm.getPassword1().equals(userCreateForm.getPassword2())) {
@@ -46,7 +46,8 @@ public class UserController {
 //            return "signup_form";
 //        }
 
-        return "name : " + userCreateForm.getName() + ", password : " + userCreateForm.getPassword();
+        return "name : " + name + ", password : " + password;
     }
+
 }
 
