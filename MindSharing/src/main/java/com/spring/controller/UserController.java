@@ -2,6 +2,7 @@ package com.spring.controller;
 
 import com.spring.Form.UserCreateForm;
 import com.spring.Repository.UserRepository;
+import com.spring.Service.BaseException;
 import com.spring.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,16 @@ public class UserController {
 //            return "signup_form";
 //        }
 
+
         return "name : " + name + ", password : " + password;
     }
 
+    @ResponseBody
+    @GetMapping("/kakao")
+    public void  kakaoCallback(@RequestParam String code) throws BaseException {
+
+        String access_Token = userService.getKaKaoAccessToken(code);
+        userService.createKakaoUser(access_Token);
+    }
 }
 
