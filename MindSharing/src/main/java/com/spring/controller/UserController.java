@@ -3,10 +3,8 @@ package com.spring.controller;
 import com.spring.Form.UserCreateForm;
 import com.spring.Repository.UserRepository;
 import com.spring.Service.UserService;
-import com.spring.entity.Test;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +25,13 @@ public class UserController {
 
         model.addAttribute("userCreateForm", userCreateForm);
         return "signup_form";
+
+    }
+
+    //로그인 컨트롤러
+    @GetMapping("/login")
+    public String login() {
+        return "login_form";
     }
 
     @PostMapping(path = "/signup", produces = "application/json")

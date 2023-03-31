@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class TestController {
 
-//    @GetMapping
-//    public String root() {
-////        TestJpa();
-//        return "TestHome";
-//    }
+    @GetMapping("/home")
+    public String root() {
+//        TestJpa();
+        return "TestHome";
+    }
 
     @GetMapping("/index")
     public String index() {
