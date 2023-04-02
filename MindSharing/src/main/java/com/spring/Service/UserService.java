@@ -49,7 +49,7 @@ public class UserService {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=7f75e0de72dd438c0e24a2502bbd1005"); //REST API
-            sb.append("&redirect_uri=http://localhost:8082/user/signup/kakao");
+            sb.append("&redirect_uri=http://localhost:8082/home");
             sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();

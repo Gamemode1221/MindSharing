@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @GetMapping("/kakao")
+    @GetMapping("/home")
     public void  kakaoCallback(@RequestParam String code) throws BaseException {
 
         String access_Token = userService.getKaKaoAccessToken(code);
