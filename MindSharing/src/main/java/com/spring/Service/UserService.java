@@ -45,24 +45,24 @@ public class UserService {
             conn.setDoOutput(true);
 
             //POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-            StringBuilder sb = new StringBuilder();
-            sb.append("grant_type=authorization_code");
-            sb.append("&client_id=7f75e0de72dd438c0e24a2502bbd1005"); //REST API
-            sb.append("&redirect_uri=http://localhost:8082/home");
-            sb.append("&code=" + code);
-            bw.write(sb.toString());
-            bw.flush();
+            BufferedWriter buffer = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+            StringBuilder Sbuilder = new StringBuilder();
+            Sbuilder.append("grant_type=authorization_code");
+            Sbuilder.append("&client_id=7f75e0de72dd438c0e24a2502bbd1005"); //REST API
+            Sbuilder.append("&redirect_uri=http://localhost:8082/home");
+            Sbuilder.append("&code=" + code);
+            buffer.write(Sbuilder.toString());
+            buffer.flush();
 
             //결과 코드가 200이라면 성공
             int responseCode = conn.getResponseCode();
             System.out.println("responseCode : " + responseCode);
             //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line = "";
             String result = "";
 
-            while ((line = br.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 result += line;
             }
             System.out.println("response body : " + result);
@@ -80,8 +80,8 @@ public class UserService {
             System.out.println("access_token : " + access_Token);
             System.out.println("refresh_token : " + refresh_Token);
 
-            br.close();
-            bw.close();
+            reader.close();
+            buffer.close();
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,11 +107,11 @@ public class UserService {
             System.out.println("responseCode : " + responseCode);
 
             //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line = "";
             String result = "";
 
-            while ((line = br.readLine()) != null) {
+            while ((line = buffer.readLine()) != null) {
                 result += line;
             }
             System.out.println("response body : " + result);
@@ -130,7 +130,7 @@ public class UserService {
             System.out.println("id : " + id);
             System.out.println("email : " + email);
 
-            br.close();
+            buffer.close();
 
         } catch (IOException e) {
             e.printStackTrace();
