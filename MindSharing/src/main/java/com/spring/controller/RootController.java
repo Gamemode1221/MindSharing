@@ -8,40 +8,40 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/")
 public class RootController {
-
-    @GetMapping
-    public String root() {
-//        return "TestHome"; // Test 용 Home
-        return "";
-    }
-
-    @GetMapping("/login")
-//    @ResponseBody
-    public String login() {
-        return "";
-    }
-
-    @GetMapping("/signup")
-//    @ResponseBody
-    public String signup() {
-        return "";
-    }
-
-    @GetMapping("/mypage")
-//    @ResponseBody
-    public String myPage() {
-        return "";
-    }
-
-    @GetMapping("/team")
-//    @ResponseBody
-    public String team() {
-        return "";
-    }
-
-    @GetMapping("/setting")
-//    @ResponseBody
-    public String setting() {
-        return "";
-    }
+//
+//    @GetMapping
+//    public String root() {
+////        return "TestHome"; // Test 용 Home
+//        return "";
+//    }
+//
+//    @GetMapping("/login")
+////    @ResponseBody
+//    public String login() {
+//        return "";
+//    }
+//
+//    @GetMapping("/signup")
+////    @ResponseBody
+//    public String signup() {
+//        return "";
+//    }
+//
+//    @GetMapping("/mypage")
+////    @ResponseBody
+//    public String myPage() {
+//        return "";
+//    }
+//
+//    @GetMapping("/team")
+////    @ResponseBody
+//    public String team() {
+//        return "";
+//    }
+//
+//    @GetMapping("/setting")
+////    @ResponseBody
+//    public String setting() {
+//        return "";
+//    }
 }
