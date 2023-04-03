@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-public class Teams {
+public class Team {
 
     @Id
     private Long teamId;
@@ -18,9 +18,9 @@ public class Teams {
     private String notice;
     private String favoriteUsers;
 
-    public Teams() { }
+    public Team() { }
 
-    public Teams(Long teamId, String teamName, Long ownerId, String memberId, Long mapId, String notice, String favoriteUsers) {
+    public Team(Long teamId, String teamName, Long ownerId, String memberId, Long mapId, String notice, String favoriteUsers) {
         this.teamId = teamId;
         this.teamName = teamName;
         this.ownerId = ownerId;

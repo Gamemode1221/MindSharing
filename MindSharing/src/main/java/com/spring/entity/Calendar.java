@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class Calendars {
+public class Calendar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,10 @@ public class Calendars {
     private Long mapId;
     private String mapName;
 
-    public Calendars() {
+    public Calendar() {
     }
 
-    public Calendars(Long userId, Long nodeId, String nodeDetail, Date creationDate, Long mapId, String mapName) {
+    public Calendar(Long userId, Long nodeId, String nodeDetail, Date creationDate, Long mapId, String mapName) {
         this.userId = userId;
         this.nodeId = nodeId;
         this.nodeDetail = nodeDetail;

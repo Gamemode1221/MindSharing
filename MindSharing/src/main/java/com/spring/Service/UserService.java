@@ -4,6 +4,7 @@ import com.nimbusds.jose.shaded.gson.Gson;
 import com.nimbusds.jose.shaded.gson.JsonElement;
 import com.spring.Repository.UserRepository;
 import com.spring.entity.Test;
+import com.spring.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,10 +13,14 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
+
+    private List<User> users = new ArrayList<>();
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder; //빈으로 객체를 받아오게끔
@@ -27,6 +32,14 @@ public class UserService {
         test.setPassword(passwordEncoder.encode(password));
         this.userRepository.save(test);
         return test;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void addUser(User user) {
+        users.add(user);
     }
 
 

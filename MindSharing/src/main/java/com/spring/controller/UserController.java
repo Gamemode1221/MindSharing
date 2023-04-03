@@ -35,8 +35,8 @@ public class UserController {
         return "login_form";
     }
 
-    @PostMapping(path = "/signup", produces = "application/json")
-//    @PostMapping("/signup")
+//    @PostMapping(path = "/signup", produces = "application/json")
+    @PostMapping("/signup")
     @ResponseBody
     public String signup(@RequestParam String name, @RequestParam String password, @ModelAttribute UserCreateForm userCreateForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

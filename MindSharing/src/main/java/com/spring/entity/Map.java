@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-public class Maps {
+public class Map {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,10 @@ public class Maps {
     private String mapName;
     private Boolean updateHistory;
 
-    public Maps() {
+    public Map() {
     }
 
-    public Maps(Long teamId, String mapName, Boolean updateHistory) {
+    public Map(Long teamId, String mapName, Boolean updateHistory) {
         this.teamId = teamId;
         this.mapName = mapName;
         this.updateHistory = updateHistory;

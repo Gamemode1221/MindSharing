@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Entity
 @Getter @Setter
-public class Users {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +27,9 @@ public class Users {
     private String githubUrl;
     private String favoriteTeams;
 
-    public Users() { }
+    public User() { }
 
-    public Users(String userId, String password, String email, String nickname, String userStatus, Date joinDate, String blogUrl, String githubUrl, String favoriteTeams) {
+    public User(String userId, String password, String email, String nickname, String userStatus, Date joinDate, String blogUrl, String githubUrl, String favoriteTeams) {
         this.userId = userId;
         this.password = password;
         this.email = email;

@@ -11,24 +11,30 @@ import java.util.Date;
 
 @Entity
 @Getter @Setter
-public class Comments {
+public class Node {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long commentsId;
-
     private Long nodeId;
-    private Date modifyDate;
-    private Long userId;
-    private String detail;
 
-    public Comments() {
+    private Long mapId;
+    private Long userId;
+    private Long parentId;
+    private Long likes;
+    private String detail;
+    private Date modifyDate;
+    private Long modifyUser;
+
+    public Node() {
     }
 
-    public Comments(Long nodeId, Date modifyDate, Long userId, String detail) {
-        this.nodeId = nodeId;
-        this.modifyDate = modifyDate;
+    public Node(Long mapId, Long userId, Long parentId, Long likes, String detail, Date modifyDate, Long modifyUser) {
+        this.mapId = mapId;
         this.userId = userId;
+        this.parentId = parentId;
+        this.likes = likes;
         this.detail = detail;
+        this.modifyDate = modifyDate;
+        this.modifyUser = modifyUser;
     }
 }
