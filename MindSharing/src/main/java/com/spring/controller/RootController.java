@@ -3,33 +3,45 @@ package com.spring.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/")
 public class RootController {
 
-    @GetMapping("/home")
+    @GetMapping
     public String root() {
-//        TestJpa();
-        return "TestHome";
+//        return "TestHome"; // Test 용 Home
+        return "";
     }
 
-    @GetMapping("/index")
-    public String index() {
-        return "index.html";
+    @GetMapping("/login")
+//    @ResponseBody
+    public String login() {
+        return "";
     }
 
-//    @Autowired
-//    private UserRepository userRepository;
-//
-//    public void TestJpa() {
-//        Test t1 = new Test();
-//        t1.setPassword("aadsa");
-//        t1.setName("asdsa");
-//
-//        this.userRepository.save(t1);  // 첫번째 질문 저장
-//
-//    }
+    @GetMapping("/signup")
+//    @ResponseBody
+    public String signup() {
+        return "";
+    }
 
+    @GetMapping("/mypage")
+//    @ResponseBody
+    public String myPage() {
+        return "";
+    }
 
+    @GetMapping("/team")
+//    @ResponseBody
+    public String team() {
+        return "";
+    }
+
+    @GetMapping("/setting")
+//    @ResponseBody
+    public String setting() {
+        return "";
+    }
 }
