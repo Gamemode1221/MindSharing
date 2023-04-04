@@ -33,6 +33,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'com.h2database:h2'
 
+	implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+	implementation 'com.theokanning.openai-gpt3-java:service:0.12.0'
+
 //	implementation 'mysql:mysql-connector-java'
 }
 
