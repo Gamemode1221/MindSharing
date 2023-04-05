@@ -9,10 +9,20 @@ import org.springframework.stereotype.Service;
 public class MapService {
 
     @Autowired
-    private MapRepository mapRepository;
+    private final MapRepository mapRepository;
 
-    public void saveMap(Long teamId, String mapName, Boolean updateHistory) {
-        Map map = new Map(teamId, mapName, updateHistory);
-        mapRepository.save(map);
+    public MapService(MapRepository mapRepository) {
+        this.mapRepository = mapRepository;
+    }
+
+//    public void saveMap(Long teamId, String mapName, Boolean updateHistory) {
+//        Map map = new Map(teamId, mapName, updateHistory);
+//        mapRepository.save(map);
+//    }
+    public Map create(Long teamId, String mapName, Boolean updateHistory){
+        Map map = new Map();
+        map.setMapName(mapName);
+        this.mapRepository.save(map);
+        return map;
     }
 }

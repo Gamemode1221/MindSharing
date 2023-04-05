@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>마인드맵 작성</title>
+</head>
+<body>
+<form th:action="@{/MapCreateForm}" method="post">
+    <div th:if="${param.error}">
+        <label for="mapName" >마인드맵 이름</label>
+        <input type="text" name="mapName" id="mapName">
+        <button type="submit">완료</button>
+    </div>
+</form>
+</body>
+</html>
