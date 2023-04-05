@@ -8,26 +8,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+//@RequestMapping("/api")
 public class RestApiController {
 
     @Autowired
     private ApiService apiService;
 
-    @GetMapping("/test")
+//    @GetMapping("/test")
+//    public String test() {
+//        return "test page";
+//    }
+
+//    @PostMapping("/test")
+//    public void addTests(@RequestBody ApiTest apiTest) {
+//        apiService.addTest(apiTest);
+//    }
+
+    @GetMapping("/test/list")
     public List<ApiTest> getTests() {
         return apiService.getTest();
     }
 
-    @PostMapping("/test")
-    public void addTests(@RequestBody ApiTest apiTest) {
-        apiService.addTest(apiTest);
-    }
-
-    @GetMapping("/test/list")
-    @ResponseBody
-    public String testList() {
-        return apiService.getTest().toString();
-    }
+//    @GetMapping("/test/list")
+//    @ResponseBody
+//    public String testList() {
+//        return apiService.getTest().toString();
+//    }
 
 }
