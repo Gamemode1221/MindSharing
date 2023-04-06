@@ -17,20 +17,25 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests().requestMatchers(
-                new AntPathRequestMatcher("/**")).permitAll()
-                .and()
-                .csrf().ignoringRequestMatchers(
-                        new AntPathRequestMatcher("/h2-console/**"))
-                .and()
-                .headers()
-                .addHeaderWriter(new XFrameOptionsHeaderWriter(
-                        XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
-                .and() //로그인 구현
-                .formLogin()
-                .loginPage("/user/login")
-                .defaultSuccessUrl("/home") //성공하면 home으로..
-        ;
+        /// CSRF 설정 비활성화
+        http.csrf().disable()
+                .authorizeRequests()
+                .anyRequest().permitAll();
+
+//        http.authorizeHttpRequests().requestMatchers(
+//                new AntPathRequestMatcher("/**")).permitAll()
+//                .and()
+//                .csrf().ignoringRequestMatchers(
+//                        new AntPathRequestMatcher("/h2-console/**"))
+//                .and()
+//                .headers()
+//                .addHeaderWriter(new XFrameOptionsHeaderWriter(
+//                        XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
+//                .and() //로그인 구현
+//                .formLogin()
+//                .loginPage("/user/login")
+//                .defaultSuccessUrl("/home") //성공하면 home으로..
+//        ;
         return http.build();
     }
     @Bean
