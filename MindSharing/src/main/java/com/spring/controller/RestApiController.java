@@ -24,7 +24,7 @@ public class RestApiController {
 //        apiService.addTest(apiTest);
 //    }
 
-    @GetMapping("/test/list")
+//    @GetMapping("/test/list")
     public List<ApiTest> getTests() {
         return apiService.getTest();
     }
