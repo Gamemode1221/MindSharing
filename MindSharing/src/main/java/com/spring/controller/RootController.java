@@ -1,14 +1,21 @@
-//package com.spring.controller;
-//
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.ResponseBody;
-//
-//@Controller
-//@RequestMapping("/")
-//public class RootController {
-//
+package com.spring.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+@RequestMapping("/")
+public class RootController {
+
+//    @GetMapping("/test")
+//    @ResponseBody
+//    public String testHome() {
+//        return "Test Home";
+//    }
+
+
 //    @GetMapping
 //    public String root() {
 ////        return "TestHome"; // Test 용 Home
@@ -44,4 +51,4 @@
 //    public String setting() {
 //        return "";
 //    }
-//}
+}

@@ -5,11 +5,11 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-//@Entity
-//@Getter @Setter
+@Entity
+@Getter @Setter
 public class ApiTest {
 
-//    @Id
+    @Id
     private Long id;
 
     private String text1;

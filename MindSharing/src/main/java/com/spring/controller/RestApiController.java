@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@RequestMapping("/api")
+@RequestMapping("/test")
 public class RestApiController {
 
     @Autowired
@@ -19,12 +19,13 @@ public class RestApiController {
 //        return "test page";
 //    }
 
-//    @PostMapping("/test")
-//    public void addTests(@RequestBody ApiTest apiTest) {
-//        apiService.addTest(apiTest);
-//    }
+    @PostMapping
+    public void addTests(@RequestBody ApiTest apiTest) {
+        apiService.addTest(apiTest);
+        System.out.println("apiTest 등록 완료");
+    }
 
-//    @GetMapping("/test/list")
+    @GetMapping("/list")
     public List<ApiTest> getTests() {
         return apiService.getTest();
     }
