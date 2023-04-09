@@ -3,6 +3,7 @@ package com.spring.controller;
 import com.spring.Form.MapCreateForm;
 import com.spring.Repository.MapRepository;
 import com.spring.Service.MapService;
+import com.spring.entity.Map;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -42,7 +45,7 @@ public class MapController {
             return "map_form";
         }
         mapService.create(mapName);
-        return "node_form";
+        return mapName;
     }
 
     @Getter
@@ -52,6 +55,18 @@ public class MapController {
 //        private Long teamId;
         private String mapName;
 //        private Boolean updateHistory;
-
     }
+
+//    @GetMapping("/mapView.html")
+//    public String mapView() {
+//        return "mapView";
+//    }
+
+    @GetMapping("/mapView.html")
+    public String mapView(Model model) {
+        List<Map> maps = mapRepository.findAll();
+        model.addAttribute("maps", maps);
+        return "mapView";
+    }
+
 }

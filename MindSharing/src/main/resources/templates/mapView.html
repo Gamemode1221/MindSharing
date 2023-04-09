@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>마인드맵 보기</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Map ID</th>
+        <th>Map Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="map : ${maps}">
+        <td th:text="${map.mapId}"></td>
+        <td th:text="${map.mapName}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
