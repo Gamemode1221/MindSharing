@@ -15,7 +15,7 @@
     <tbody>
     <tr th:each="map : ${maps}">
         <td th:text="${map.mapId}"></td>
-        <td th:text="${map.mapName}"></td>
+        <td><a th:href="@{/MapDetail/{mapId}(mapId=${map.mapId})}" th:text="${map.mapName}"></a></td>
     </tr>
     </tbody>
 </table>
