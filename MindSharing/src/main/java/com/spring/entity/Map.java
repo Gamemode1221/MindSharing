@@ -15,16 +15,16 @@ public class Map {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mapId;
 
-    private Long teamId;
     private String mapName;
     private Boolean updateHistory;
+    private Long teamId;
 
     public Map() {
     }
 
     public Map(Long teamId, String mapName, Boolean updateHistory) {
-        this.teamId = teamId;
         this.mapName = mapName;
+        this.teamId = teamId;
         this.updateHistory = updateHistory;
     }
 }

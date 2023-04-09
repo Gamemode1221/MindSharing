@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class MapCreateForm {
     private String mapName;
-
+//    private Long teamId;
+//    private Boolean updateHistory;
 }
 

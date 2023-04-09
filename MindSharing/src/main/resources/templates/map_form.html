@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>마인드맵 작성</title>
 </head>
 <body>
-<form th:action="@{/MapCreateForm}" method="post">
+ㅇ
+    <form th:object="${mapCreateForm}" method="post">
     <div th:if="${param.error}">
+        <div>
         <label for="mapName" >마인드맵 이름</label>
-        <input type="text" name="mapName" id="mapName">
+            <input type="text" th:field="*{mapName}" id="mapName" name="mapName">
+
+        </div>
+<!--        <label for="teamId" >팀 이름</label>-->
+<!--        <input type="text" name="teamId" id="teamId">-->
+<!--        <label for="updateHistory" >마인드맵 이름</label>-->
+<!--        <input type="text" name="updateHistory" id="updateHistory">-->
         <button type="submit">완료</button>
     </div>
 </form>
+ㅇ
 </body>
 </html>
