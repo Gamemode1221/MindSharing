@@ -9,7 +9,7 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@Entity
+@Entity(name = "users")
 @Getter @Setter
 public class User {
 
