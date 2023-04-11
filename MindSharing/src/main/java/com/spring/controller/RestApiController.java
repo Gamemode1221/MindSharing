@@ -11,11 +11,34 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/test")
 public class RestApiController {
 
     @Autowired
     private ApiService apiService;
+
+    @RequestMapping("/")
+    public ResponseEntity<Map<String, String>> getUser(@RequestBody Map<String, String> payload) {
+
+        String username = payload.get("username");
+        String email = payload.get("useremail");
+        String password = payload.get("password");
+
+        Map<String, String> user = new HashMap<>();
+        user.put("username", username);
+        user.put("email", email);
+        user.put("password", password);
+
+        return ResponseEntity.ok(user);
+    }
+
+//    // api/message 매핑으로 프론트에게 데이터를 보냄
+//    @RequestMapping
+//    public ResponseEntity<Map<String, String>> getMessage() {
+//        Map<String, String> message = new HashMap<>();
+//        message.put("message", "Hello from Spring Boot!");
+//
+//        return ResponseEntity.ok(message);
+//    }
 
     @PostMapping
     public void addTests(@RequestBody ApiTest apiTest) {
@@ -28,13 +51,5 @@ public class RestApiController {
         return apiService.getTest();
     }
 
-    // api/message 매핑으로 프론트에게 데이터를 보냄
-    @GetMapping("/api/message")
-    public ResponseEntity<Map<String, String>> getMessage() {
-        Map<String, String> message = new HashMap<>();
-        message.put("message", "Hello from Spring Boot!");
-
-        return ResponseEntity.ok(message);
-    }
 
 }

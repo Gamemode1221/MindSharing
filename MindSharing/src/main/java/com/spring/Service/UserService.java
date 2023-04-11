@@ -12,20 +12,18 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
 
-    private List<User> users = new ArrayList<>();
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder; //빈으로 객체를 받아오게끔
 
     public List<User> getUsers() {
-        return users;
+        return userRepository.findAll();
     }
 
     public void signup(String username, String email, String password) {
@@ -36,7 +34,6 @@ public class UserService {
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
 
-        users.add(user);
         userRepository.save(user);
     }
 
