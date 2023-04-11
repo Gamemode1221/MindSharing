@@ -23,18 +23,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-//    @PostMapping
-//    public void addUser(@RequestBody User user) {
-//        loginService.addUser(user);
-//        System.out.println("유저 로그인 완료");
-//    }
-//
-//    @GetMapping("/list")
-//    public List<User> getUsers() {
-//        return loginService.getUser();
-//    }
-
-
     @PostMapping("/signup")
     public ResponseEntity<String> addUser(@RequestBody Map<String, String> payload) {
 
