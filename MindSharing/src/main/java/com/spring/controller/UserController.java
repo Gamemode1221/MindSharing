@@ -3,8 +3,6 @@ package com.spring.controller;
 import com.spring.Service.BaseException;
 import com.spring.Service.UserService;
 import com.spring.entity.User;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +10,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@RequiredArgsConstructor
 @Controller
 @RequestMapping("/")
 public class UserController {
 
-    @Autowired
+    // 생성자 주입
     private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/signup")
     public ResponseEntity<String> addUser(@RequestBody Map<String, String> payload) {

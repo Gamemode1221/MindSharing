@@ -2,7 +2,6 @@ package com.spring.controller;
 
 import com.spring.Service.ApiService;
 import com.spring.entity.ApiTest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +12,12 @@ import java.util.Map;
 @RestController
 public class RestApiController {
 
-    @Autowired
-    private ApiService apiService;
+    // 생성자 주입
+    private final ApiService apiService;
+
+    public RestApiController(ApiService apiService) {
+        this.apiService = apiService;
+    }
 
     @RequestMapping("/")
     public ResponseEntity<Map<String, String>> getUser(@RequestBody Map<String, String> payload) {
