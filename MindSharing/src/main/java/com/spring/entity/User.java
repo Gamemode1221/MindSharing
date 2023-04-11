@@ -20,7 +20,7 @@ public class User {
     private String userId;
     private String password;
     private String email;
-    private String nickname;
+    private String username;
     private String userStatus;
     private Date joinDate;
     private String blogUrl;
@@ -29,11 +29,11 @@ public class User {
 
     public User() { }
 
-    public User(String userId, String password, String email, String nickname, String userStatus, Date joinDate, String blogUrl, String githubUrl, String favoriteTeams) {
+    public User(String userId, String password, String email, String username, String userStatus, Date joinDate, String blogUrl, String githubUrl, String favoriteTeams) {
         this.userId = userId;
         this.password = password;
         this.email = email;
-        this.nickname = nickname;
+        this.username = username;
         this.userStatus = userStatus;
         this.joinDate = joinDate;
         this.blogUrl = blogUrl;
