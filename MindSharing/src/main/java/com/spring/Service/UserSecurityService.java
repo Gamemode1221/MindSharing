@@ -22,7 +22,7 @@ public class UserSecurityService implements UserDetailsService {
 
     @Override // loadUserByUsername 메서드에 의해 리턴된 User 객체(리턴)의 비밀번호가 화면으로부터 입력 받은 비밀번호와 일치하는지를 검사하는 로직
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<com.spring.entity.User> userRepo = this.userRepository.findByName(username);
+        Optional<com.spring.entity.User> userRepo = this.userRepository.findByUserId(username);
         if (userRepo.isEmpty()) {
             throw new UsernameNotFoundException("사용자를 찾을수 없음요.");
         }
