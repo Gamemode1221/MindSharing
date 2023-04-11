@@ -3,7 +3,6 @@ package com.spring.Service;
 import com.nimbusds.jose.shaded.gson.Gson;
 import com.nimbusds.jose.shaded.gson.JsonElement;
 import com.spring.Repository.UserRepository;
-import com.spring.entity.Test;
 import com.spring.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,23 +24,21 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder; //빈으로 객체를 받아오게끔
 
-    public Test create(String name, String password) {
-        Test test = new Test();
-        test.setName(name);
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); //시큐리티의 암호화
-        test.setPassword(passwordEncoder.encode(password));
-        this.userRepository.save(test);
-        return test;
-    }
-
     public List<User> getUsers() {
         return users;
     }
 
-    public void addUser(User user) {
-        users.add(user);
-    }
+    public void signup(String username, String email, String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        User user = new User();
 
+        user.setUserId(username);
+        user.setEmail(email);
+        user.setPassword(passwordEncoder.encode(password));
+
+        users.add(user);
+        userRepository.save(user);
+    }
 
     //getKaKaoAccessToken , createKakaoUser
     public String getKaKaoAccessToken(String code) {

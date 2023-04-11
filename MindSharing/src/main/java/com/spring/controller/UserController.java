@@ -1,18 +1,17 @@
 package com.spring.controller;
 
-import com.spring.Form.UserCreateForm;
 import com.spring.Repository.UserRepository;
 import com.spring.Service.BaseException;
 import com.spring.Service.UserService;
 import com.spring.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
@@ -37,12 +36,23 @@ public class UserController {
 
 
     @PostMapping("/signup")
-    public void addUser(@RequestBody User user) {
-        userService.addUser(user);
+    public ResponseEntity<String> addUser(@RequestBody Map<String, String> payload) {
+
+        String username = payload.get("username");
+        String email = payload.get("useremail");
+        String password = payload.get("password");
+
+//        System.out.println("username : " + username);
+//        System.out.println("email : " + email);
+//        System.out.println("password : " + password);
+
+        userService.signup(username, email, password);
 
         List<User> users = userService.getUsers();
 
         System.out.println("유저 회원가입 완료 : " + users);
+
+        return ResponseEntity.ok("유저 회원가입 완료");
     }
 
     @PostMapping("/login")
@@ -52,6 +62,7 @@ public class UserController {
     }
 
     @GetMapping("/user/list")
+    @ResponseBody
     public List<User> getUsers() {
 
         List<User> users = userService.getUsers();
