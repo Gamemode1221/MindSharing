@@ -19,6 +19,17 @@ public class RestApiController {
         this.apiService = apiService;
     }
 
+    @GetMapping("api/user")
+    public Map<String, String> getUser(@ModelAttribute String username, @ModelAttribute String email, @ModelAttribute String password) {
+
+        Map<String, String> user = new HashMap<>();
+        user.put("username", username);
+        user.put("email", email);
+        user.put("password", password);
+
+        return user;
+    }
+
 //    // api/message 매핑으로 프론트에게 데이터를 보냄
 //    @RequestMapping
 //    public ResponseEntity<Map<String, String>> getMessage() {
