@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,20 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    public ResponseEntity<Map<String, String>> getUser(@RequestBody Map<String, String> payload) {
+
+        String username = payload.get("username");
+        String email = payload.get("useremail");
+        String password = payload.get("password");
+
+        Map<String, String> user = new HashMap<>();
+        user.put("username", username);
+        user.put("email", email);
+        user.put("password", password);
+
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/signup")

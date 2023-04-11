@@ -19,21 +19,6 @@ public class RestApiController {
         this.apiService = apiService;
     }
 
-    @RequestMapping("/")
-    public ResponseEntity<Map<String, String>> getUser(@RequestBody Map<String, String> payload) {
-
-        String username = payload.get("username");
-        String email = payload.get("useremail");
-        String password = payload.get("password");
-
-        Map<String, String> user = new HashMap<>();
-        user.put("username", username);
-        user.put("email", email);
-        user.put("password", password);
-
-        return ResponseEntity.ok(user);
-    }
-
 //    // api/message 매핑으로 프론트에게 데이터를 보냄
 //    @RequestMapping
 //    public ResponseEntity<Map<String, String>> getMessage() {
