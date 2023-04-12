@@ -1,8 +1,9 @@
 package com.spring.controller;
 
 import com.spring.Service.ApiService;
+import com.spring.Service.UserService;
 import com.spring.entity.ApiTest;
-import org.springframework.http.ResponseEntity;
+import com.spring.entity.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -14,20 +15,27 @@ public class RestApiController {
 
     // 생성자 주입
     private final ApiService apiService;
+    private final UserService userService;
 
-    public RestApiController(ApiService apiService) {
+    public RestApiController(ApiService apiService, UserService userService) {
         this.apiService = apiService;
+        this.userService = userService;
     }
 
-    @GetMapping("api/user")
-    public Map<String, String> getUser(@ModelAttribute String username, @ModelAttribute String email, @ModelAttribute String password) {
+    @PostMapping("api/user")
+    public Map<String, String> getUser(@ModelAttribute User user) {
 
-        Map<String, String> user = new HashMap<>();
-        user.put("username", username);
-        user.put("email", email);
-        user.put("password", password);
+        // 사용자의 로그인 토큰을 받아와서 UserService의 loadUserByUsername() 메소드를 통해 유저의 정보를 알아내고
+        // 그 유저의 정보를 User 클래스의 Map 형식으로 리턴.
 
-        return user;
+//        Map<String, String> user = new HashMap<>();
+//        user.put("username", username);
+//        user.put("email", email);
+//        user.put("password", password);
+//
+//        return user;
+
+        return null;
     }
 
 //    // api/message 매핑으로 프론트에게 데이터를 보냄
