@@ -39,11 +39,11 @@ public class UserController {
         return ResponseEntity.ok("유저 회원가입 완료");
     }
 
-    @PostMapping("/login")
-    @ResponseBody
-    public String login() {
-        return "로그인 완료";
-    }
+//    @PostMapping("/login")
+//    @ResponseBody
+//    public String login() {
+//        return "로그인 완료";
+//    }
 
     @GetMapping("/user/list")
     @ResponseBody
