@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class NodeCreateForm {
-    private Long mapId;
+    //private Long mapId;
     //private Long parentId;
     private String detail;
 }

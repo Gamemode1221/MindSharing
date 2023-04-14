@@ -18,12 +18,16 @@ public class NodeService {
     public NodeService(NodeRepository nodeRepository) {
         this.nodeRepository = nodeRepository;
     }
-    public Node create(String detail){
+    public Node create(Long mapid, String detail, Long mapId){
         Node node = new Node();
         node.setDetail(detail);
+//        node.setParentId(parentId);
+        node.setMapId(mapId);
         this.nodeRepository.save(node);
         return node;
     }
+
+
     public List<Node> getNode() {
         return node;
     }

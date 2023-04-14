@@ -7,13 +7,13 @@
 <body>
 <div>
   <h1 th:text="${map.mapName}"></h1>
-  <form th:action="@{/MapDetail}" method="post">
-    <form th:object="${nodeCreateForm}" method="post">
-    <label for="nodeContent">노드 내용</label>
-    <input type="text" id="nodeContent" name="nodeContent">
+  <form th:action="@{/MapDetail/{mapid}(mapid=${map.mapId})}" method="post">
+    <label for="detail">노드 내용</label>
+    <input type="text" id="detail" name="detail">
     <button type="submit">노드 추가</button>
-    </form>
   </form>
+
+<!--  <h5 th:text="${detail}"></h5>-->
 </div>
 </body>
 </html>

@@ -37,4 +37,7 @@ public class Node {
         this.modifyDate = modifyDate;
         this.modifyUser = modifyUser;
     }
+
+    public void setMap(Map map) {
+    }
 }
