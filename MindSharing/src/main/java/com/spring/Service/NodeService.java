@@ -18,7 +18,7 @@ public class NodeService {
     public NodeService(NodeRepository nodeRepository) {
         this.nodeRepository = nodeRepository;
     }
-    public Node create(Long mapid, String detail, Long mapId) {
+    public Node create(Long mapid, String detail, Long mapId, Long parentId ) {
         Node node = new Node();
         node.setDetail(detail);
         node.setMapId(mapid);
