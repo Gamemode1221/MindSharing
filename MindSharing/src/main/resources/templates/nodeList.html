@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>nodelist</title>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>마인드맵 id</th>
+    <th>노드 id</th>
+    <th>Detail</th>
+    <th>Parent ID</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="node : ${nodes}" th:if="${node.mapId == mapid}">
+    <td th:text="${node.mapId}"></td>
+    <td th:text="${node.nodeId}"></td>
+    <td th:text="${node.detail}"></td>
+    <td th:text="${node.parentId}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

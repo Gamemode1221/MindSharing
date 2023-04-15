@@ -3,12 +3,15 @@ package com.spring.controller;
 import com.spring.Repository.MapRepository;
 import com.spring.Repository.NodeRepository;
 import com.spring.Service.NodeService;
+import com.spring.entity.Map;
 import com.spring.entity.Node;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -60,10 +63,18 @@ public class NodeController {
     @PostMapping("/MapDetail/{mapid}")
     public String createNode(@PathVariable Long mapid, @RequestParam String detail, Long mapId, Long parentId, Model model) {
         nodeService.create(mapid, detail, mapId, parentId);
-
-        return "redirect:/MapDetail/" + mapid;
+        Map map = mapRepository.findById(mapId).orElseThrow();
+        model.addAttribute("map", map);
+        return "redirect:/MapDetail/" + mapid + "/nodeList";
     }
 
+    @GetMapping("/MapDetail/{mapid}/nodeList")
+    public String nodeView(@PathVariable Long mapid, Model model, Long mapId) {
+        List<Node> nodes = nodeRepository.findAll();
+        model.addAttribute("mapId", mapId);
+        model.addAttribute("nodes", nodes);
+        return "nodeList";
+    }
 
 }
 

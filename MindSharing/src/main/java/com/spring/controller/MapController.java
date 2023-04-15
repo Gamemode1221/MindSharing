@@ -69,29 +69,11 @@ public class MapController {
         return "mapView";
     }
 
-    @GetMapping("/MapView")
-    public String getMapList(Model model) {
-        List<Map> mapList = mapRepository.findAll();
-        model.addAttribute("mapList", mapList);
-        return "mapView";
-    }
-
-    @GetMapping("/MapCreateForm")
-    public String getMapCreateForm(Model model) {
-        model.addAttribute("mapCreateForm", new Map());
-        return "mapCreateForm";
-    }
-
-    @PostMapping("/MapCreateForm")
-    public String postMapCreateForm(@ModelAttribute Map mapCreateForm) {
-        mapRepository.save(mapCreateForm);
-        return "redirect:/MapView";
-    }
-
     @GetMapping("/MapDetail/{mapId}")
-    public String getMapDetail(@PathVariable Long mapId, Model model) {
+    public String getMapDetail(@PathVariable Long mapId, Model model, Long mapid) {
         Map map = mapRepository.findById(mapId).orElseThrow();
         model.addAttribute("map", map);
+
         return "mapDetail";
     }
 
