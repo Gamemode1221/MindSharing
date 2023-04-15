@@ -24,13 +24,13 @@ public class NodeService {
         node.setDetail(detail);
         node.setMapId(mapid);
 
-        if (parentId != null) {
+        if (parentId != null) { //parentId가 null인지 확인
             Optional<Node> parentNodeOptional = nodeRepository.findById(parentId);
-            if (parentNodeOptional.isPresent()) {
+            if (parentNodeOptional.isPresent()) {  //parentId가 null이 아닌 경우에는 parentId가 유효한지 검증
                 Node parentNode = parentNodeOptional.get();
-                if (parentNode.getMapId().equals(mapid)) {
+                if (parentNode.getMapId().equals(mapid)) { //parentId가 유효하면 노드에 parentId를 설정한 후 저장
                     node.setParentId(parentId);
-                } else {
+                } else { //parentId로 조회한 노드가 존재하지 않으면 예외처리
                     throw new IllegalArgumentException("parentId does not belong to the same map");
                 }
             } else {
@@ -38,7 +38,7 @@ public class NodeService {
             }
         }
 
-        this.nodeRepository.save(node);
+        this.nodeRepository.save(node); // null이면 그냥 저장
         return node;
     }
 
