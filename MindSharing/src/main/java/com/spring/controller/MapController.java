@@ -29,13 +29,6 @@ public class MapController {
     public String map(MapCreateForm mapCreateForm, Model model) {
         model.addAttribute("mapCreateForm", mapCreateForm);
         return "map_form";
-
-//    @PostMapping("/map")
-//    public ResponseEntity<Void> saveMap(@RequestBody MapRequest mapRequest) {
-//        mapService.saveMap(mapRequest.getTeamId(), mapRequest.getMapName(), mapRequest.getUpdateHistory());
-//        return new ResponseEntity<>(HttpStatus.CREATED);
-//
-//    }
     }
 
     @PostMapping("/mapform")
@@ -51,16 +44,9 @@ public class MapController {
     @Getter
     @Setter
     public static class MapRequest {
-
-//        private Long teamId;
         private String mapName;
-//        private Boolean updateHistory;
     }
 
-//    @GetMapping("/mapView.html")
-//    public String mapView() {
-//        return "mapView";
-//    }
 
     @GetMapping("/mapView.html")
     public String mapView(Model model) {

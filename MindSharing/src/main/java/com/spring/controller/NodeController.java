@@ -26,20 +26,6 @@ public class NodeController {
     @Autowired
     private NodeRepository nodeRepository;
 
-//    @GetMapping("/MapDetail/{mapid}/")
-//    public String node(@PathVariable Long mapid, NodeCreateForm nodeCreateForm, Model model) {
-//        model.addAttribute("nodeCreateForm", nodeCreateForm);
-//        return "nodeDetail";
-//    }
-//    @PostMapping("/MapDetail/{mapid}/")
-//    @ResponseBody
-//    public String creatrnode(@RequestParam String detail, @ModelAttribute NodeCreateForm nodeCreateForm, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "mapDetail";
-//        }
-//        nodeService.create(detail);
-//        return detail;
-//    }
     @GetMapping("/NodeCreateForm")
     public String getNodeCreateForm(Model model) {
         model.addAttribute("nodeCreateForm", new Node());
@@ -51,14 +37,6 @@ public class NodeController {
         nodeRepository.save(nodeCreateForm);
         return "redirect:/MapDetail";
     }
-
-//    @GetMapping("/MapDetail/{mapId}/{detail}")
-//    public String getNodeDetail( @PathVariable Long detail, Model model) {
-////        Map map = mapRepository.findById(mapId).orElseThrow();
-//        Node node = nodeRepository.findById(detail).orElseThrow();
-//        model.addAttribute("node", node);
-//        return "nodeDetail";
-//    }
 
     @PostMapping("/MapDetail/{mapid}")
     public String createNode(@PathVariable Long mapid, @RequestParam String detail, Long mapId, Long parentId, Model model) {
