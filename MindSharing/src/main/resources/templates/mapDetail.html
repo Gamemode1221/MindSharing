@@ -6,15 +6,38 @@
 </head>
 <body>
 <div>
+  <h1>마인드맵 이름 : </h1>
   <h1 th:text="${map.mapName}"></h1>
   <br>
 
+<!--  <table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>마인드맵 id</th>-->
+<!--      <th>노드 id</th>-->
+<!--      <th>Detail</th>-->
+<!--      <th>Parent ID</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="node : ${nodes}" th:if="${node.mapId == mapid}">-->
+<!--      <td th:text="${node.mapId}"></td>-->
+<!--      <td th:text="${node.nodeId}"></td>-->
+<!--      <td th:text="${node.detail}"></td>-->
+<!--      <td th:text="${node.parentId}"></td>-->
+<!--      <td>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+
   <form th:action="@{/MapDetail/{mapid}(mapid=${map.mapId})}" method="post">
+    <label for="parentId">상위노드</label>
+    <input type="text" id="parentId" name="parentId"></br>
     <label for="detail">노드 내용</label>
     <input type="text" id="detail" name="detail">
     <button type="submit">노드 추가</button>
   </form>
-<a href="@{/MapDetail/{mapId}(mapId=${map.mapId})/nodeList}">노드 보기</a>
 </div>
 </body>
 </html>

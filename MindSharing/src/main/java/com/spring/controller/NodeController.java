@@ -62,10 +62,11 @@ public class NodeController {
 
     @PostMapping("/MapDetail/{mapid}")
     public String createNode(@PathVariable Long mapid, @RequestParam String detail, Long mapId, Long parentId, Model model) {
-        nodeService.create(mapid, detail, mapId, parentId);
-        Map map = mapRepository.findById(mapId).orElseThrow();
+        nodeService.create(mapid, detail, parentId);
+        Map map = mapRepository.findById(mapid).orElseThrow();
         model.addAttribute("map", map);
-        return "redirect:/MapDetail/" + mapid + "/nodeList";
+
+        return "redirect:/MapDetail/" + mapid;
     }
 
     @GetMapping("/MapDetail/{mapid}/nodeList")

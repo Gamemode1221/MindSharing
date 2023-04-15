@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NodeService {
@@ -18,13 +19,31 @@ public class NodeService {
     public NodeService(NodeRepository nodeRepository) {
         this.nodeRepository = nodeRepository;
     }
-    public Node create(Long mapid, String detail, Long mapId, Long parentId ) {
+    public Node create(Long mapid, String detail, Long parentId ) {
         Node node = new Node();
         node.setDetail(detail);
         node.setMapId(mapid);
+
+        if (parentId != null) {
+            Optional<Node> parentNodeOptional = nodeRepository.findById(parentId);
+            if (parentNodeOptional.isPresent()) {
+                Node parentNode = parentNodeOptional.get();
+                if (parentNode.getMapId().equals(mapid)) {
+                    node.setParentId(parentId);
+                } else {
+                    throw new IllegalArgumentException("parentId does not belong to the same map");
+                }
+            } else {
+                throw new IllegalArgumentException("invalid parentId");
+            }
+        }
+
         this.nodeRepository.save(node);
         return node;
     }
+
+
+
 
 
 
