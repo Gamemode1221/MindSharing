@@ -52,6 +52,8 @@ public class NodeController {
         List<Node> nodes = nodeRepository.findAll();
         model.addAttribute("mapId", mapId);
         model.addAttribute("nodes", nodes);
+        Map map = mapRepository.findById(mapid).orElseThrow();
+        model.addAttribute("map", map);
         return "nodeList";
     }
 

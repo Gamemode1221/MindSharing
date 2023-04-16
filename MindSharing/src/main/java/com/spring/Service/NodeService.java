@@ -41,12 +41,6 @@ public class NodeService {
         this.nodeRepository.save(node); // null이면 그냥 저장
         return node;
     }
-
-
-
-
-
-
     public List<Node> getNode() {
         return node;
     }
