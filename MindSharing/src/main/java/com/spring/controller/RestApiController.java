@@ -13,6 +13,9 @@ import java.util.Map;
 @RestController
 public class RestApiController {
 
+    // 클라이언트에게 웅답을 반환할 때에는 HTTP 상태 코드와 JSON 형식을 함께 사용하는 것이 좋음.
+    // 클라이언트 측에서 응답을 쉽게 처리할 수 있고, 보다 명확한 에러 처리 및 디버깅이 가능함.
+
     // 생성자 주입
     private final ApiService apiService;
     private final UserService userService;
