@@ -17,24 +17,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests().requestMatchers(
-//                new AntPathRequestMatcher("/**")).permitAll()
-//                .and()
+        return http.authorizeHttpRequests().requestMatchers(
+                        new AntPathRequestMatcher("/**")).permitAll()
+                .and()
+                // CSRF 비활성화 코드를 지우면 사용 가능
 //                .csrf().ignoringRequestMatchers(
 //                        new AntPathRequestMatcher("/h2-console/**"))
 //                .and()
-//                .headers()
-//                .addHeaderWriter(new XFrameOptionsHeaderWriter(
-//                        XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
-//                .and() //로그인 구현
-//                .formLogin()
-//                .loginPage("/user/login")
-//                .defaultSuccessUrl("/home"); //성공하면 home으로..
-
-        // 위의 코드에서 CSRF 설정만 비활성화 함
-        http.authorizeHttpRequests().requestMatchers(
-                        new AntPathRequestMatcher("/**")).permitAll()
-                .and()
                 .csrf().disable() // CSRF 비활성화
                 .headers()
                 .addHeaderWriter(new XFrameOptionsHeaderWriter(
@@ -42,9 +31,8 @@ public class SecurityConfig {
                 .and() // 로그인 구현
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/"); // 성공하면 home으로
-
-        return http.build();
+                .defaultSuccessUrl("/") // 성공하면 home으로
+                .and().build();
     }
     @Bean
     PasswordEncoder passwordEncoder() { //패스워드를 bean으로
