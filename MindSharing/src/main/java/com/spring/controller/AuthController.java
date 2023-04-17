@@ -39,6 +39,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
         } catch (RuntimeException e) {
             // 다른 예외가 발생한 경우, 여기에서 처리하세요.
+            e.printStackTrace();
         }
 
         // JWT 발급
