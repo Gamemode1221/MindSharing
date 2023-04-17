@@ -35,14 +35,14 @@ public class SecurityConfig {
         http.authorizeHttpRequests().requestMatchers(
                         new AntPathRequestMatcher("/**")).permitAll()
                 .and()
-                .csrf().disable() // CSRF를 비활성화합니다.
+                .csrf().disable() // CSRF 비활성화
                 .headers()
                 .addHeaderWriter(new XFrameOptionsHeaderWriter(
                         XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
-                .and() //로그인 구현
+                .and() // 로그인 구현
                 .formLogin()
-                .loginPage("/user/login")
-                .defaultSuccessUrl("/home"); //성공하면 home으로..
+                .loginPage("/login")
+                .defaultSuccessUrl("/"); // 성공하면 home으로
 
         return http.build();
     }
