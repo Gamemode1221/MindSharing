@@ -2,8 +2,8 @@ package com.spring.controller;
 
 import com.spring.Service.JwtUtil;
 import com.spring.Service.UserService;
-import com.spring.entity.JwtRequest;
-import com.spring.entity.JwtResponse;
+import com.spring.entity.dto.JwtRequest;
+import com.spring.entity.dto.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,19 +27,23 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    // 현재 아래의 로그인 매핑과 메소드가 실행되지 않음.
+
+    @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest jwtRequest) {
-        System.out.println("createAuthenticationToken Username : " + jwtRequest.getUsername());
-        System.out.println("createAuthenticationToken Password : " + jwtRequest.getPassword());
+        System.out.println("Attempting to authenticate user: " + jwtRequest.getUsername());
+
+        // 사용자 인증
         try {
-            // 사용자 인증
             authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
         } catch (UsernameNotFoundException e) {
-            // 사용자를 찾지 못한 경우 응답을 변경하세요.
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+        } catch (DisabledException | BadCredentialsException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Authentication failed");
         } catch (RuntimeException e) {
-            // 다른 예외가 발생한 경우, 여기에서 처리하세요.
             e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
         }
 
         // JWT 발급

@@ -1,4 +1,4 @@
-package com.spring.entity;
+package com.spring.entity.dto;
 
 import java.io.Serializable;
 

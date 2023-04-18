@@ -16,6 +16,8 @@ import java.util.Map;
 @RequestMapping("/")
 public class UserController {
 
+    // 사용자 로그인 및 회원가입 유효성 검사 코드 추가 필요
+
     // 생성자 주입
     private final UserService userService;
 

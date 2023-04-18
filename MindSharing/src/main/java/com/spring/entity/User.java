@@ -1,28 +1,36 @@
 package com.spring.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "users")
 @Getter @Setter
 public class User {
+    // 사용자 정의 클래스
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String userId;
+
     private String password;
+
+    @Column(unique = true)
     private String email;
+
     private String username;
     private String userStatus;
+
     private Date joinDate;
+
     private String blogUrl;
     private String githubUrl;
     private String favoriteTeams;
@@ -39,5 +47,14 @@ public class User {
         this.blogUrl = blogUrl;
         this.githubUrl = githubUrl;
         this.favoriteTeams = favoriteTeams;
+    }
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<Authority> roles = new ArrayList<>();
+
+    public void setRoles(List<Authority> role) {
+        this.roles = role;
+        role.forEach(o -> o.setUser(this));
     }
 }
