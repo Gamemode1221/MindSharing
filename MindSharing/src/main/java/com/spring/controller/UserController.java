@@ -25,7 +25,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/signup")
+//    @PostMapping("/signup")
     public ResponseEntity<String> addUser(@RequestBody Map<String, String> payload) {
 
         String username = payload.get("username");

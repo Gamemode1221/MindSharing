@@ -1,9 +1,7 @@
 package com.spring.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.Builder;
 
 import java.util.ArrayList;
@@ -12,6 +10,8 @@ import java.util.List;
 
 @Entity(name = "users")
 @Getter @Setter @Builder
+@AllArgsConstructor
+//@NoArgsConstructor
 public class User {
     // 사용자 정의 클래스
 
@@ -50,7 +50,7 @@ public class User {
         this.favoriteTeams = favoriteTeams;
     }
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Builder.Default
     private List<Authority> roles = new ArrayList<>();
 

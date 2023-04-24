@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import net.minidev.json.annotate.JsonIgnore;
 
-@Entity
+@Entity(name = "Auth")
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +22,7 @@ public class Authority {
 
     private String name;
 
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "users")
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
