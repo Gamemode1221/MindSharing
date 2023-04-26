@@ -3,22 +3,29 @@ package com.spring.Service;
 
 import com.spring.Repository.TeamRepository;
 import com.spring.entity.Team;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+//@RequiredArgsConstructor
 @Service
 public class TeamService {
 
-    private List<Team> team = new ArrayList<>();
+    public List<Team> getTeam() {
+        return teamRepository.findAll();
+    }
 
-    @Autowired
     private final TeamRepository teamRepository;
 
     public TeamService(TeamRepository teamRepository) {
         this.teamRepository = teamRepository;
+    }
+
+    public void team(String teamName) {
+        Team team = new Team();
+
+        team.setTeamName(teamName);
+        teamRepository.save(team);
     }
 
     public Team create(String teamName) { //, Long ownerId, List<String> memberIds, Long mapId, String notice, List<String> favoriteUsers
@@ -37,9 +44,6 @@ public class TeamService {
         return team;
     }
 
-    public List<Team> getTeam() {
-        return this.teamRepository.findAll();
-    }
 }
 
 

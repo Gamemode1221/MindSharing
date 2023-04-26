@@ -7,22 +7,26 @@ import com.spring.entity.Team;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
+@RestController
 @RequiredArgsConstructor
-@Controller
 public class TeamController {
 
-    @Autowired
-    private TeamService teamService;
+    private final TeamService teamService;
 
-    @Autowired
-    private TeamRepository teamRepository;
+    private final TeamRepository teamRepository;
+
+
+//    @PostMapping("/team")
+//    public ResponseEntity<Boolean> team(@RequestBody TeamRequest request) throws Exception {
+//        return new ResponseEntity<>(teamService.team(request), HttpStatus.OK);
+//    }
+
 
     @GetMapping("/teamform")
     public String team(TeamCreateForm teamCreateForm, Model model) {
