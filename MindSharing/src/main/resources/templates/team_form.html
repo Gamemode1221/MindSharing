@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>팀 생성</title>
+</head>
+<body>
+    <form th:object="${teamCreateForm}" method="post">
+        <div>
+            <label for="teamName" >팀 이름</label>
+            <input type="text" th:field="*{teamName}" id="teamName" name="teamName">
+        </div>
+        <button type="submit">완료</button>
+    </form>
+</body>
+</html>

@@ -1,6 +1,8 @@
 package com.spring.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +12,10 @@ import lombok.Setter;
 public class Team {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long teamId;
+
+
     private String teamName;
     private Long ownerId;
     private String memberId;
