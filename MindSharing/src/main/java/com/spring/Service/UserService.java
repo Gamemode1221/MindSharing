@@ -65,7 +65,7 @@ public class UserService {
             StringBuilder Sbuilder = new StringBuilder();
             Sbuilder.append("grant_type=authorization_code");
             Sbuilder.append("&client_id=989929564bca258170149c609e6d427e"); //REST API
-            Sbuilder.append("&redirect_uri=http://localhost:8082/loginsuccess");
+            Sbuilder.append("&redirect_uri=http://localhost:8082/home");
             Sbuilder.append("&code=" + code);
             buffer.write(Sbuilder.toString());
             buffer.flush();
