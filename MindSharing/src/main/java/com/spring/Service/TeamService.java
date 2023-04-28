@@ -25,7 +25,7 @@ public class TeamService {
     public boolean team(TeamRequest request) throws Exception {
         try {
             Team team = Team.builder()
-                    .teamName(request.getTeamname())
+                    .teamName(request.getTeamName())
                     .build();
 
             teamRepository.save(team);
@@ -36,10 +36,10 @@ public class TeamService {
         return true;
     }
 
-    public void team(String teamname) {
+    public void team(String teamName) {
         Team team = new Team();
 
-        team.setTeamName(teamname);
+        team.setTeamName(teamName);
         teamRepository.save(team);
     }
 

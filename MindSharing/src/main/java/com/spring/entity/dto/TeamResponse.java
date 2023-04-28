@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 public class TeamResponse {
 
 
-    private String teamname;
+    private String teamName;
 
     public TeamResponse(Team team) {
-        this.teamname = team.getTeamName();
+        this.teamName = team.getTeamName();
     }
 }

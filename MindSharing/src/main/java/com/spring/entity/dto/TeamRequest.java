@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter @Setter
 public class TeamRequest {
 
-    private String teamname;
+    private String teamName;
 
 }
 

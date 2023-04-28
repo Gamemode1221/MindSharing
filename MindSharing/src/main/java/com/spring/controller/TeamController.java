@@ -2,14 +2,14 @@ package com.spring.controller;
 
 import com.spring.Repository.TeamRepository;
 import com.spring.Service.TeamService;
+import com.spring.entity.Team;
 import com.spring.entity.dto.TeamRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -28,10 +28,21 @@ public class TeamController {
 
     public ResponseEntity<String> addTeam(@RequestBody Map<String, String> payload) {
 
-        String teamname = payload.get("teamname");
-        teamService.team(teamname);
+        String teamName = payload.get("teamName");
+        teamService.team(teamName);
 
         return ResponseEntity.ok("팀 생성 완료");
+    }
+
+    @GetMapping("/team/list")
+    @ResponseBody
+    public List<Team> getTeam() {
+
+        List<Team> team = teamService.getTeam();
+
+        if (team == null) return null;
+
+        return teamService.getTeam();
     }
 
 
