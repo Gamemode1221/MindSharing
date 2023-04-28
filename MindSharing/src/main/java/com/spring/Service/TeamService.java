@@ -36,6 +36,13 @@ public class TeamService {
         return true;
     }
 
+    public void team(String teamname) {
+        Team team = new Team();
+
+        team.setTeamName(teamname);
+        teamRepository.save(team);
+    }
+
 //    public Team create(String teamName) { //, Long ownerId, List<String> memberIds, Long mapId, String notice, List<String> favoriteUsers
 //        Team team = new Team();
 //        team.setTeamName(teamName); //팀 이름
