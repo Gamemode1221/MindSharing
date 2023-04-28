@@ -5,10 +5,8 @@ import com.spring.Service.UserService;
 import com.spring.entity.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +57,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @GetMapping("/home")
+    @GetMapping("/loginsuccess")
     public void kakaoCallback(@RequestParam String code) throws BaseException {
         String access_Token = userService.getKaKaoAccessToken(code);
         userService.createKakaoUser(access_Token);
