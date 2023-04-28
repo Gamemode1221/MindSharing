@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 public class TeamController {
@@ -24,7 +26,13 @@ public class TeamController {
         return new ResponseEntity<>(teamService.team(request), HttpStatus.OK);
     }
 
-    
+    public ResponseEntity<String> addTeam(@RequestBody Map<String, String> payload) {
+
+        String teamname = payload.get("teamname");
+        teamService.team(teamname);
+
+        return ResponseEntity.ok("팀 생성 완료");
+    }
 
 
 //    @GetMapping("/teamform")
