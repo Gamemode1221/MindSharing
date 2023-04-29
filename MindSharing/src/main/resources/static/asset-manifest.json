@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.23e7a6d3.css",
-    "main.js": "/static/js/main.bb912a5b.js",
+    "main.js": "/static/js/main.0c573c39.js",
     "static/js/787.26dc2ced.chunk.js": "/static/js/787.26dc2ced.chunk.js",
     "static/media/naver.png": "/static/media/naver.7c4d1ab2195f65089a0a.png",
     "index.html": "/index.html",
     "main.23e7a6d3.css.map": "/static/css/main.23e7a6d3.css.map",
-    "main.bb912a5b.js.map": "/static/js/main.bb912a5b.js.map",
+    "main.0c573c39.js.map": "/static/js/main.0c573c39.js.map",
     "787.26dc2ced.chunk.js.map": "/static/js/787.26dc2ced.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.23e7a6d3.css",
-    "static/js/main.bb912a5b.js"
+    "static/js/main.0c573c39.js"
   ]
 }
