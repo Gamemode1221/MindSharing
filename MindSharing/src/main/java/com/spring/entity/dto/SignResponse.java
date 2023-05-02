@@ -2,14 +2,12 @@ package com.spring.entity.dto;
 
 import com.spring.entity.Authority;
 import com.spring.entity.User;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Getter
