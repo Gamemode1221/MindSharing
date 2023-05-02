@@ -20,8 +20,6 @@ public class SignResponse {
 
     private Long id;
 
-    private String userId;
-
     private String username;
 
     private String userEmail;
@@ -39,7 +37,6 @@ public class SignResponse {
 
     public SignResponse(User user) {
         this.id = user.getId();
-        this.userId = user.getUserId();
         this.username = user.getUsername();
         this.userEmail = user.getEmail();
         this.roles = user.getRoles();

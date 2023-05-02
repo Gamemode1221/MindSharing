@@ -22,7 +22,7 @@ public class UserSecurityService implements UserDetailsService {
 
     @Override // loadUserByUsername 메서드에 의해 리턴된 User 객체(리턴)의 비밀번호가 화면으로부터 입력 받은 비밀번호와 일치하는지를 검사하는 로직
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<com.spring.entity.User> userRepo = this.userRepository.findByUserId(username);
+        Optional<com.spring.entity.User> userRepo = this.userRepository.findByUsername(username);
         if (userRepo.isEmpty()) {
             throw new UsernameNotFoundException("사용자를 찾을수 없음요.");
         }
@@ -36,6 +36,6 @@ public class UserSecurityService implements UserDetailsService {
         }
 
         //name, password, 권한을 입력으로 스프링 시큐리티의 User 객체를 생성하여 리턴
-        return new User(user.getUserId(), user.getPassword(), authorities);
+        return new User(user.getUsername(), user.getPassword(), authorities);
     }
 }

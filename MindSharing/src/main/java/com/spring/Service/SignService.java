@@ -33,7 +33,7 @@ public class SignService {
 
         return SignResponse.builder()
                 .id(user.getId())
-                .userId(user.getUserId())
+//                .userId(user.getUserId())
                 .username(user.getUsername())
                 .userEmail(user.getEmail())
                 .roles(user.getRoles())
@@ -63,5 +63,10 @@ public class SignService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new Exception("계정을 찾을 수 없습니다."));
         return new SignResponse(user);
+    }
+
+    public User getUserInfo(String username) throws Exception {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new Exception("계정을 찾을 수 없습니다."));
     }
 }

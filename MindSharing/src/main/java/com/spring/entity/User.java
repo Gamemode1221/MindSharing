@@ -23,14 +23,14 @@ public class User {
     private Long id;
 
     @Column(unique = true)
-    private String userId;
+    private String username;
 
     private String password;
 
     @Column(unique = true)
     private String email;
 
-    private String username;
+//    private String username;
     private String userStatus;
 
     private Date joinDate;
@@ -41,11 +41,10 @@ public class User {
 
     public User() { }
 
-    public User(String userId, String password, String email, String username, String userStatus, Date joinDate, String blogUrl, String githubUrl, String favoriteTeams) {
-        this.userId = userId;
+    public User(String username, String password, String email, String userStatus, Date joinDate, String blogUrl, String githubUrl, String favoriteTeams) {
+        this.username = username;
         this.password = password;
         this.email = email;
-        this.username = username;
         this.userStatus = userStatus;
         this.joinDate = joinDate;
         this.blogUrl = blogUrl;
