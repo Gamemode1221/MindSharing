@@ -28,23 +28,24 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void signup(String username, String email, String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        User user = new User();
+    // SignService로 대체
+//    public void signup(String username, String email, String password) {
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        User user = new User();
+//
+//        user.setUserId(username);
+//        user.setEmail(email);
+//        user.setPassword(passwordEncoder.encode(password));
+//
+//        userRepository.save(user);
+//    }
 
-        user.setUserId(username);
-        user.setEmail(email);
-        user.setPassword(passwordEncoder.encode(password));
-
-        userRepository.save(user);
-    }
-
-    public UserDetails loadUserByUsername(String username) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
-
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
-    }
+//    public UserDetails loadUserByUsername(String username) {
+//        User user = userRepository.findByUsername(username)
+//                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+//
+//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
+//    }
 
     //getKaKaoAccessToken , createKakaoUser
     public String getKaKaoAccessToken(String code) {
@@ -66,7 +67,7 @@ public class UserService {
             Sbuilder.append("grant_type=authorization_code");
             Sbuilder.append("&client_id=989929564bca258170149c609e6d427e"); //REST API
             Sbuilder.append("&redirect_uri=http://localhost:8082/home");
-            Sbuilder.append("&code=" + code);
+//            Sbuilder.append("&code=" + code);
             buffer.write(Sbuilder.toString());
             buffer.flush();
 
@@ -105,6 +106,7 @@ public class UserService {
         return access_Token;
 //        return "test";
     }
+
     public String createKakaoUser(String token) throws BaseException {
 
         String reqURL = "https://kauth.kakao.com/oauth/token";

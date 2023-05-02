@@ -23,21 +23,22 @@ public class UserController {
         this.userService = userService;
     }
 
+    // SignService 대체
 //    @PostMapping("/signup")
-    public ResponseEntity<String> addUser(@RequestBody Map<String, String> payload) {
-
-        String username = payload.get("username");
-        String email = payload.get("useremail");
-        String password = payload.get("password");
-
+//    public ResponseEntity<String> addUser(@RequestBody Map<String, String> payload) {
+//
+//        String username = payload.get("username");
+//        String email = payload.get("useremail");
+//        String password = payload.get("password");
+//
 //        System.out.println("username : " + username);
 //        System.out.println("email : " + email);
 //        System.out.println("password : " + password);
-
-        userService.signup(username, email, password);
-
-        return ResponseEntity.ok("유저 회원가입 완료");
-    }
+//
+//        userService.signup(username, email, password);
+//
+//        return ResponseEntity.ok("유저 회원가입 완료");
+//    }
 
 //    @PostMapping("/login")
 //    @ResponseBody

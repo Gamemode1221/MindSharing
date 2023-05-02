@@ -46,7 +46,7 @@ public class SignService {
             User user = User.builder()
                     .username(request.getUsername())
                     .password(passwordEncoder.encode(request.getPassword()))
-                    .email(request.getUserEmail())
+                    .email(request.getUseremail())
                     .build();
 
             user.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));

@@ -1,7 +1,9 @@
 package com.spring.component;
 
 import com.spring.Service.JpaUserDetailsService;
+import com.spring.Service.SignService;
 import com.spring.entity.Authority;
+import com.spring.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -91,4 +93,15 @@ public class JwtProvider {
             return false;
         }
     }
+
+    public UserDetails getUserDetailsFromToken(String token) {
+        // 토큰에서 사용자 계정(account)을 가져옵니다.
+        String account = getAccount(token);
+
+        // 사용자 계정으로부터 UserDetails를 가져옵니다.
+        UserDetails userDetails = userDetailsService.loadUserByUsername(account);
+
+        return userDetails;
+    }
+
 }

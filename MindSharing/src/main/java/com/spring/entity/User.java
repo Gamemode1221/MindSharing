@@ -1,5 +1,7 @@
 package com.spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.Builder;
@@ -12,6 +14,7 @@ import java.util.List;
 @Getter @Setter @Builder
 @AllArgsConstructor
 //@NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
     // 사용자 정의 클래스
 
