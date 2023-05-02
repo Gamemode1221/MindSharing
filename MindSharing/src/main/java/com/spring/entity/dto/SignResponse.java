@@ -20,7 +20,7 @@ public class SignResponse {
 
     private String username;
 
-    private String userEmail;
+    private String email;
 
     private List<Authority> roles = new ArrayList<>();
 
@@ -36,7 +36,7 @@ public class SignResponse {
     public SignResponse(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
-        this.userEmail = user.getEmail();
+        this.email = user.getEmail();
         this.roles = user.getRoles();
     }
 }

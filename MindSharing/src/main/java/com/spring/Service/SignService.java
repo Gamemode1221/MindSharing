@@ -35,7 +35,7 @@ public class SignService {
                 .id(user.getId())
 //                .userId(user.getUserId())
                 .username(user.getUsername())
-                .userEmail(user.getEmail())
+                .email(user.getEmail())
                 .roles(user.getRoles())
                 .token(jwtProvider.createToken(user.getUsername(), user.getRoles()))
                 .build();
@@ -46,7 +46,7 @@ public class SignService {
             User user = User.builder()
                     .username(request.getUsername())
                     .password(passwordEncoder.encode(request.getPassword()))
-                    .email(request.getUseremail())
+                    .email(request.getEmail())
                     .build();
 
             user.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));

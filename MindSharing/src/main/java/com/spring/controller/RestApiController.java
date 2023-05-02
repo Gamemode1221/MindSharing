@@ -34,11 +34,13 @@ public class RestApiController {
         this.jwtProvider = jwtProvider;
     }
 
-    @RequestMapping("api/user")
+    @PostMapping("api/user")
     public Map<String, String> getUser(Authentication authentication, HttpServletRequest request) throws Exception {
 
         // 현재 접속중인 사용자의 토큰을 받음
         String token = jwtProvider.resolveToken(request);
+
+        System.out.println("token : " + token);
 
         // 사용자의 토큰에서 사용자의 아이디 추출
         UserDetails details = jwtProvider.getUserDetailsFromToken(token);
@@ -69,6 +71,11 @@ public class RestApiController {
 //
 //        return ResponseEntity.ok(message);
 //    }
+
+    @RequestMapping("/check")
+    public void isLoggedIn(HttpServletRequest request) {
+        System.out.println("ApplicationController isLoggedIn() token : " + jwtProvider.resolveToken(request));
+    }
 
     @PostMapping
     public void addTests(@RequestBody ApiTest apiTest) {
