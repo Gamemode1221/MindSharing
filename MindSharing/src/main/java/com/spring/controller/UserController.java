@@ -56,11 +56,19 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @ResponseBody
     @GetMapping("/home")
-    public void kakaoCallback(@RequestParam String code) throws BaseException {
+    public String kakaoCallback(@RequestParam("code") String code) throws BaseException {
+        System.out.println("code: " + code);
         String access_Token = userService.getKaKaoAccessToken(code);
         userService.createKakaoUser(access_Token);
+
+        System.out.println("kakaocallback 정상작동");
+
+        return "redirect:/";
     }
+
+
+
+
 }
 
