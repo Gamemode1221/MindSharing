@@ -21,6 +21,9 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -65,7 +68,7 @@ public class SecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             // 조건별로 요청 허용/제한 설정
-            .authorizeRequests()
+            .authorizeHttpRequests()
             // 모든 사용자가 모든 주소에 접속 허용
             .requestMatchers("/**").permitAll()
             // 회원가입과 로그인은 모두 승인
@@ -125,6 +128,13 @@ public class SecurityConfig {
 //                .loginPage("/login")
 //                .defaultSuccessUrl("/") // 성공하면 home으로
 //                .and().build();
+    }
+
+    @Bean
+    public static RequestMatcher h2ConsoleMatcher() {
+        return new OrRequestMatcher(
+                new AntPathRequestMatcher("/h2-console/**")
+        );
     }
 
     @Bean
