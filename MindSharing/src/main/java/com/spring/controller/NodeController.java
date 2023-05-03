@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -39,8 +40,8 @@ public class NodeController {
     }
 
     @PostMapping("/MapDetail/{mapid}")
-    public String createNode(@PathVariable Long mapid, @RequestParam String detail, Long mapId, Long parentId, Model model) {
-        nodeService.create(mapid, detail, parentId);
+    public String createNode(@PathVariable Long mapid, @RequestParam String detail, Long mapId, Long parentId, Model model, Date createDate) {
+        nodeService.create(mapid, detail, parentId, createDate);
         Map map = mapRepository.findById(mapid).orElseThrow();
         model.addAttribute("map", map);
 

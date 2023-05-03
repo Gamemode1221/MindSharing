@@ -22,13 +22,14 @@ public class Node {
     private Long parentId;
     private Long likes;
     private String detail;
+    private Date createDate;
     private Date modifyDate;
     private Long modifyUser;
 
     public Node() {
     }
 
-    public Node(Long mapId, Long userId, Long parentId, Long likes, String detail, Date modifyDate, Long modifyUser) {
+    public Node(Long mapId, Long userId, Long parentId, Long likes, String detail, Date modifyDate, Long modifyUser, Date createDate) {
         this.mapId = mapId;
         this.userId = userId;
         this.parentId = parentId;
@@ -36,6 +37,7 @@ public class Node {
         this.detail = detail;
         this.modifyDate = modifyDate;
         this.modifyUser = modifyUser;
+        this.createDate = createDate;
     }
 
     public void setMap(Map map) {
