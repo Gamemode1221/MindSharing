@@ -22,7 +22,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtProvider jwtProvider;
     private final AuthenticationEntryPoint authenticationEntryPoint;
-//    private final AccessDeniedHandler accessDeniedHandler;
+//    private final AccessDeniedHandler accessDeniedHandler; // 이미 SecurityConfig에 접속 설정이 있음.
 
     public JwtAuthenticationFilter(JwtProvider jwtProvider) {
         this.jwtProvider = jwtProvider;
@@ -38,7 +38,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             response.setStatus(401);
             response.setCharacterEncoding("utf-8");
             response.setContentType("text/html; charset=UTF-8");
-            response.getWriter().write("인증되지 않은 사용자입니다.");
+//            response.getWriter().write("인증되지 않은 사용자입니다. (JwtAuthenticationFilter)");
         };
     }
 
@@ -52,6 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
+
         try {
             String token = jwtProvider.resolveToken(request);
 
@@ -60,12 +61,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 token = token.split(" ")[1].trim();
                 Authentication auth = jwtProvider.getAuthentication(token);
                 SecurityContextHolder.getContext().setAuthentication(auth);
-                filterChain.doFilter(request, response);
             } else {
                 // 토큰이 없거나 유효하지 않은 경우
                 authenticationEntryPoint.commence(request, response, new AuthenticationException("JWT token is not valid") {
                 });
             }
+            filterChain.doFilter(request, response);
 
         } catch (JwtException e) {
             authenticationEntryPoint.commence(request, response, new AuthenticationException("JWT token is not valid") {

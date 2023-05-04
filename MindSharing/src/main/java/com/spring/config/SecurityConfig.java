@@ -28,6 +28,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
@@ -91,7 +92,7 @@ public class SecurityConfig {
                     response.setStatus(403);
                     response.setCharacterEncoding("utf-8");
                     response.setContentType("text/html; charset=UTF-8");
-                    response.getWriter().write("권한이 없는 사용자입니다.");
+                    response.getWriter().write("권한이 없는 사용자입니다. (SecurityConfig)");
                 }
             })
             .authenticationEntryPoint(new AuthenticationEntryPoint() {
@@ -101,7 +102,7 @@ public class SecurityConfig {
                     response.setStatus(401);
                     response.setCharacterEncoding("utf-8");
                     response.setContentType("text/html; charset=UTF-8");
-                    response.getWriter().write("인증되지 않은 사용자입니다.");
+                    response.getWriter().write("인증되지 않은 사용자입니다. (SecurityConfig)");
                 }
             });
 
@@ -135,6 +136,13 @@ public class SecurityConfig {
         return new OrRequestMatcher(
                 new AntPathRequestMatcher("/h2-console/**")
         );
+    }
+
+    @Bean
+    public static RequestMatcher protectedEndpointMatcher() {
+        List<RequestMatcher> matchers = new ArrayList<>();
+
+        matchers.add(new AntPathRequestMatcher("/**"));
     }
 
     @Bean

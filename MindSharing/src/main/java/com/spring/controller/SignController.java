@@ -3,7 +3,6 @@ package com.spring.controller;
 import com.spring.Repository.UserRepository;
 import com.spring.Service.SignService;
 import com.spring.component.JwtProvider;
-import com.spring.entity.User;
 import com.spring.entity.dto.SignRequest;
 import com.spring.entity.dto.SignResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,10 +32,6 @@ public class SignController {
     @GetMapping("/user/get")
     public ResponseEntity<?> getUser(@RequestParam String username, HttpServletRequest request) throws Exception {
         String token = jwtProvider.resolveToken(request);
-
-//        if (token == null || !jwtProvider.validateToken(token)) {
-//            return new ResponseEntity<>("인증되지 않은 사용자입니다. (SignController.getUser())", HttpStatus.UNAUTHORIZED);
-//        }
 
         SignResponse user = userService.getUser(username);
         SignResponse response = SignResponse.builder()
