@@ -38,25 +38,25 @@ public class RestApiController {
     public Map<String, String> getUser(Authentication authentication, HttpServletRequest request) throws Exception {
 
         // 현재 접속중인 사용자의 토큰을 받음
-        String token = jwtProvider.resolveToken(request);
+//        String token = jwtProvider.resolveToken(request);
 
-        System.out.println("token : " + token);
+//        System.out.println("token : " + token);
 
         // 사용자의 토큰에서 사용자의 아이디 추출
-        UserDetails details = jwtProvider.getUserDetailsFromToken(token);
+//        UserDetails details = jwtProvider.getUserDetailsFromToken(token);
 
         // 사용자의 아이디로 사용자의 모든 정보 추출
-        User userInfo = signService.getUserInfo(details.getUsername());
+//        User userInfo = signService.getUserInfo(details.getUsername());
 
         Map<String, String> user = new HashMap<>();
 
-        user.put("username", userInfo.getUsername());
-        user.put("email", userInfo.getEmail());
-        user.put("status", userInfo.getUserStatus());
-        user.put("joindate", userInfo.getJoinDate().toString());
-        user.put("blog", userInfo.getBlogUrl());
-        user.put("github", userInfo.getGithubUrl());
-        user.put("favoriteteam", userInfo.getFavoriteTeams());
+//        user.put("username", userInfo.getUsername());
+//        user.put("email", userInfo.getEmail());
+//        user.put("status", userInfo.getUserStatus());
+//        user.put("joindate", userInfo.getJoinDate().toString());
+//        user.put("blog", userInfo.getBlogUrl());
+//        user.put("github", userInfo.getGithubUrl());
+//        user.put("favoriteteam", userInfo.getFavoriteTeams());
 
         System.out.println(user);
 
@@ -74,7 +74,7 @@ public class RestApiController {
 
     @RequestMapping("/check")
     public void isLoggedIn(HttpServletRequest request) {
-        System.out.println("ApplicationController isLoggedIn() token : " + jwtProvider.resolveToken(request));
+//        System.out.println("ApplicationController isLoggedIn() token : " + jwtProvider.resolveToken(request));
     }
 
     @PostMapping

@@ -19,33 +19,33 @@ public class SignController {
     private final SignService userService;
     private final JwtProvider jwtProvider;
 
-    @PostMapping("/login")
-    public ResponseEntity<SignResponse> signIn(@RequestBody SignRequest request) throws Exception {
-        return new ResponseEntity<>(userService.login(request), HttpStatus.OK);
-    }
-
-    @PostMapping("/signup")
-    public ResponseEntity<Boolean> signup(@RequestBody SignRequest request) throws Exception {
-        return new ResponseEntity<>(userService.signup(request), HttpStatus.OK);
-    }
-
-    @GetMapping("/user/get")
-    public ResponseEntity<?> getUser(@RequestParam String username, HttpServletRequest request) throws Exception {
-        String token = jwtProvider.resolveToken(request);
-
-        SignResponse user = userService.getUser(username);
-        SignResponse response = SignResponse.builder()
-                .id(user.getId())
-                .email(user.getEmail())
-                .roles(user.getRoles())
-                .token(token)
-                .build();
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/admin/get")
-    public ResponseEntity<SignResponse> getUserForAdmin(@RequestBody String username) throws Exception {
-        return new ResponseEntity<>(userService.getUser(username), HttpStatus.OK);
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<SignResponse> signIn(@RequestBody SignRequest request) throws Exception {
+//        return new ResponseEntity<>(userService.login(request), HttpStatus.OK);
+//    }
+//
+//    @PostMapping("/signup")
+//    public ResponseEntity<Boolean> signup(@RequestBody SignRequest request) throws Exception {
+//        return new ResponseEntity<>(userService.signup(request), HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/user/get")
+//    public ResponseEntity<?> getUser(@RequestParam String username, HttpServletRequest request) throws Exception {
+//        String token = jwtProvider.resolveToken(request);
+//
+//        SignResponse user = userService.getUser(username);
+//        SignResponse response = SignResponse.builder()
+//                .id(user.getId())
+//                .email(user.getEmail())
+//                .roles(user.getRoles())
+//                .token(token)
+//                .build();
+//
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/admin/get")
+//    public ResponseEntity<SignResponse> getUserForAdmin(@RequestBody String username) throws Exception {
+//        return new ResponseEntity<>(userService.getUser(username), HttpStatus.OK);
+//    }
 }
