@@ -1,27 +1,15 @@
 package com.spring.component;
 
-import com.spring.Service.JpaUserDetailsService;
-import com.spring.Service.SignService;
-import com.spring.entity.Authority;
-import com.spring.entity.User;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
-import jakarta.annotation.PostConstruct;
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.attribute.UserPrincipal;
-import java.security.Key;
 import java.util.Date;
-import java.util.List;
 
 @Component
 //@RequiredArgsConstructor

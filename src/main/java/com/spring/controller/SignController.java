@@ -4,8 +4,6 @@ import com.spring.Repository.UserRepository;
 import com.spring.Service.SignService;
 import com.spring.component.JwtProvider;
 import com.spring.entity.dto.SignRequest;
-import com.spring.entity.dto.SignResponse;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +21,11 @@ public class SignController {
 //    public ResponseEntity<SignResponse> signIn(@RequestBody SignRequest request) throws Exception {
 //        return new ResponseEntity<>(userService.login(request), HttpStatus.OK);
 //    }
-//
-//    @PostMapping("/signup")
-//    public ResponseEntity<Boolean> signup(@RequestBody SignRequest request) throws Exception {
-//        return new ResponseEntity<>(userService.signup(request), HttpStatus.OK);
-//    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<Boolean> signup(@RequestBody SignRequest request) throws Exception {
+        return new ResponseEntity<>(userService.signup(request), HttpStatus.OK);
+    }
 //
 //    @GetMapping("/user/get")
 //    public ResponseEntity<?> getUser(@RequestParam String username, HttpServletRequest request) throws Exception {

@@ -5,38 +5,25 @@ import com.spring.component.JwtAuthenticationEntryPoint;
 //import com.spring.component.JwtAuthenticationFilter;
 import com.spring.component.JwtAuthenticationFilter;
 import com.spring.component.JwtProvider;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
 
@@ -56,19 +43,36 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        RequestMatcher publicUrls = new OrRequestMatcher(
+                List.of(
+                        new AntPathRequestMatcher("/**")
+//                        new AntPathRequestMatcher("/"),
+//                        new AntPathRequestMatcher("/home"),
+//                        new AntPathRequestMatcher("/login"),
+//                        new AntPathRequestMatcher("/signup"),
+//                        new AntPathRequestMatcher("/h2-console/**")
+                )
+        );
+
         http
+            .headers()
+                .frameOptions().disable()
+                .and()
             .cors()
                 .and()
             .csrf()
                 .disable()
-            .exceptionHandling()
-                .authenticationEntryPoint(unauthorizedHandler)
-                .and()
-            .authorizeHttpRequests()
-                .requestMatchers("/api/auth/**")
-                    .permitAll()
-                .anyRequest()
-                    .authenticated();
+            // 권한 오류 핸들링
+//            .exceptionHandling()
+//                .authenticationEntryPoint(unauthorizedHandler)
+//                .and()
+            .authorizeHttpRequests(authorize -> authorize
+                    .requestMatchers(publicUrls)
+                        .permitAll()
+                    .anyRequest()
+                        .authenticated()
+            );
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 

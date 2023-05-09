@@ -15,6 +15,7 @@ import java.io.IOException;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+    // final 형으로 바꿔도 괜찮음.
     private JwtProvider provider;
     private UserDetailsService userDetailsService;
 

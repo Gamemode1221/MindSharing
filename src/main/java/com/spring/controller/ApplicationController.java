@@ -1,7 +1,6 @@
 package com.spring.controller;
 
 import com.spring.component.JwtProvider;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

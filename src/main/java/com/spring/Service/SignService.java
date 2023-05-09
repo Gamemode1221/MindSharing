@@ -23,23 +23,23 @@ public class SignService {
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
 
-//    public SignResponse login(SignRequest request) throws Exception {
-//        User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() ->
-//                new BadCredentialsException("잘못된 계정정보 입니다."));
-//
-//        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-//            throw new BadCredentialsException("잘못된 계정정보 입니다.");
-//        }
-//
-//        return SignResponse.builder()
-//                .id(user.getId())
-////                .userId(user.getUserId())
-//                .username(user.getUsername())
-//                .email(user.getEmail())
-//                .roles(user.getRoles())
+    public SignResponse login(SignRequest request) throws Exception {
+        User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() ->
+                new BadCredentialsException("잘못된 계정정보 입니다."));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new BadCredentialsException("잘못된 계정정보 입니다.");
+        }
+
+        return SignResponse.builder()
+                .id(user.getId())
+//                .userId(user.getUserId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .roles(user.getRoles())
 //                .token(jwtProvider.createToken(user.getUsername(), user.getRoles()))
-//                .build();
-//    }
+                .build();
+    }
 
     public boolean signup(SignRequest request) throws Exception {
         try {

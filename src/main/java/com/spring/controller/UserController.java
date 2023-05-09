@@ -3,12 +3,10 @@ package com.spring.controller;
 import com.spring.Service.BaseException;
 import com.spring.Service.UserService;
 import com.spring.entity.User;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/")
