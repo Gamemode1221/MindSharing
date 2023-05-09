@@ -36,7 +36,7 @@ public class SignService {
 //                .userId(user.getUserId())
                 .username(user.getUsername())
                 .email(user.getEmail())
-                .roles(user.getRoles())
+//                .roles(user.getRoles())
 //                .token(jwtProvider.createToken(user.getUsername(), user.getRoles()))
                 .build();
     }
@@ -49,7 +49,7 @@ public class SignService {
                     .email(request.getEmail())
                     .build();
 
-            user.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));
+//            user.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));
 
             userRepository.save(user);
         } catch (Exception e) {

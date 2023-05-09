@@ -1,6 +1,7 @@
 package com.spring.config;
 
 import com.spring.Service.CustomUserDetailsService;
+import com.spring.Service.UserDetailsServiceImpl;
 import com.spring.component.JwtAuthenticationEntryPoint;
 //import com.spring.component.JwtAuthenticationFilter;
 import com.spring.component.JwtAuthenticationFilter;
@@ -8,10 +9,13 @@ import com.spring.component.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -23,61 +27,38 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import java.util.List;
 
 @Configuration
-//@RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
-
-    @Autowired
-    private JwtProvider provider;
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(new BCryptPasswordEncoder());
+    }
 
     @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter(provider, customUserDetailsService);
+    public AuthenticationManager getAuthenticationManager(AuthenticationManagerBuilder auth) throws Exception {
+        return auth.build();
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        RequestMatcher publicUrls = new OrRequestMatcher(
-                List.of(
-                        new AntPathRequestMatcher("/**")
-//                        new AntPathRequestMatcher("/"),
-//                        new AntPathRequestMatcher("/home"),
-//                        new AntPathRequestMatcher("/login"),
-//                        new AntPathRequestMatcher("/signup"),
-//                        new AntPathRequestMatcher("/h2-console/**")
-                )
-        );
-
-        http
-            .headers()
-                .frameOptions().disable()
+        http.csrf().disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-            .cors()
-                .and()
-            .csrf()
-                .disable()
-            // 권한 오류 핸들링
-//            .exceptionHandling()
-//                .authenticationEntryPoint(unauthorizedHandler)
-//                .and()
-            .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers(publicUrls)
-                        .permitAll()
-                    .anyRequest()
-                        .authenticated()
-            );
-
-        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .authorizeHttpRequests()
+                // /login 엔드포인트에 대한 POST 요청은 보호되지 않음.
+                .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                // 다른 모든 요청은 보호됨
+                .anyRequest().authenticated();
 
         return http.build();
     }
+
 
 
 //    private final JwtProvider jwtProvider;
@@ -194,8 +175,8 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean //스프링 시큐리티의 인증 담당
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+//    @Bean //스프링 시큐리티의 인증 담당
+//    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+//        return authenticationConfiguration.getAuthenticationManager();
+//    }
 }

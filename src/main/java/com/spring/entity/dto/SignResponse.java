@@ -37,6 +37,6 @@ public class SignResponse {
         this.id = user.getId();
         this.username = user.getUsername();
         this.email = user.getEmail();
-        this.roles = user.getRoles();
+//        this.roles = user.getRoles();
     }
 }

@@ -39,6 +39,8 @@ public class User {
     private String githubUrl;
     private String favoriteTeams;
 
+    private String role;
+
     public User() { }
 
     public User(String username, String password, String email, String userStatus, Date joinDate, String blogUrl, String githubUrl, String favoriteTeams) {
@@ -52,12 +54,19 @@ public class User {
         this.favoriteTeams = favoriteTeams;
     }
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @Builder.Default
-    private List<Authority> roles = new ArrayList<>();
-
-    public void setRoles(List<Authority> role) {
-        this.roles = role;
-        role.forEach(o -> o.setUser(this));
+    // 임시
+    public User(String username, String password, String role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
+
+    //    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @Builder.Default
+//    private List<Authority> roles = new ArrayList<>();
+//
+//    public void setRoles(List<Authority> role) {
+//        this.roles = role;
+//        role.forEach(o -> o.setUser(this));
+//    }
 }
