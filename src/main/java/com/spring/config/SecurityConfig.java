@@ -7,8 +7,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -24,9 +22,9 @@ public class SecurityConfig {
                     // JWT 사용에 의한 CSRF 비활성화
                     .csrf().disable()
                 .authorizeHttpRequests()
+                    // 모든 엔드포인트 요청 수락
                     .requestMatchers("/**").permitAll()
-                .and()
-                .build();
+                .and().build();
     }
 
     // PasswordEncoder를 createDelegatingPasswordEncoder()로 설정하면
