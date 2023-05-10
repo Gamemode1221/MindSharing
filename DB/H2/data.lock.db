@@ -1,6 +1,6 @@
 #FileLock
-#Wed May 10 14:40:19 KST 2023
-hostName=localhost
-id=188042cb66b0d8d76bdf845abae380e3e40d674938e
+#Wed May 10 16:18:12 KST 2023
+hostName=MOBILEJ0403-06
+id=1880486533e5860b72cbd43464c88ba07a391d85544
 method=file
-server=localhost\:50126
+server=117.17.34.188\:51261

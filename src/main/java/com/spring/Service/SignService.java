@@ -1,8 +1,6 @@
 package com.spring.Service;
 
 import com.spring.Repository.UserRepository;
-import com.spring.component.JwtProvider;
-import com.spring.entity.Authority;
 import com.spring.entity.User;
 import com.spring.entity.dto.SignRequest;
 import com.spring.entity.dto.SignResponse;
@@ -11,17 +9,12 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-
 @Service
 @RequiredArgsConstructor
 public class SignService {
 
-    // 비즈니스 로직
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtProvider jwtProvider;
 
     public SignResponse login(SignRequest request) throws Exception {
         User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() ->
@@ -33,7 +26,6 @@ public class SignService {
 
         return SignResponse.builder()
                 .id(user.getId())
-//                .userId(user.getUserId())
                 .username(user.getUsername())
                 .email(user.getEmail())
 //                .roles(user.getRoles())

@@ -3,7 +3,6 @@ package com.spring.controller;
 import com.spring.Service.ApiService;
 import com.spring.Service.SignService;
 import com.spring.Service.UserService;
-import com.spring.component.JwtProvider;
 import com.spring.entity.ApiTest;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
@@ -23,13 +22,11 @@ public class RestApiController {
     private final ApiService apiService;
     private final UserService userService;
     private final SignService signService;
-    private final JwtProvider jwtProvider;
 
-    public RestApiController(ApiService apiService, UserService userService, SignService signService, JwtProvider jwtProvider) {
+    public RestApiController(ApiService apiService, UserService userService, SignService signService) {
         this.apiService = apiService;
         this.userService = userService;
         this.signService = signService;
-        this.jwtProvider = jwtProvider;
     }
 
     @PostMapping("api/user")

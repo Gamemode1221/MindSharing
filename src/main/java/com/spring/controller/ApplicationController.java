@@ -1,17 +1,16 @@
 package com.spring.controller;
 
-import com.spring.component.JwtProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ApplicationController {
 
-    private final JwtProvider jwtProvider;
-
-    public ApplicationController(JwtProvider jwtProvider) {
-        this.jwtProvider = jwtProvider;
-    }
+//    private final JwtProvider jwtProvider;
+//
+//    public ApplicationController(JwtProvider jwtProvider) {
+//        this.jwtProvider = jwtProvider;
+//    }
 
     @RequestMapping(value = "/{path:[^\\.]*}")
     public String redirect() {

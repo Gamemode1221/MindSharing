@@ -2,8 +2,8 @@ package com.spring.controller;
 
 import com.spring.Repository.UserRepository;
 import com.spring.Service.SignService;
-import com.spring.component.JwtProvider;
 import com.spring.entity.dto.SignRequest;
+import com.spring.entity.dto.SignResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class SignController {
 
-    private final UserRepository userRepository;
     private final SignService userService;
-    private final JwtProvider jwtProvider;
 
-//    @PostMapping("/login")
-//    public ResponseEntity<SignResponse> signIn(@RequestBody SignRequest request) throws Exception {
-//        return new ResponseEntity<>(userService.login(request), HttpStatus.OK);
-//    }
+    @PostMapping("/login")
+    public ResponseEntity<SignResponse> login(@RequestBody SignRequest request) throws Exception {
+        return new ResponseEntity<>(userService.login(request), HttpStatus.OK);
+    }
 
     @PostMapping("/signup")
     public ResponseEntity<Boolean> signup(@RequestBody SignRequest request) throws Exception {
