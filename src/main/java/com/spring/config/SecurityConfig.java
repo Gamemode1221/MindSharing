@@ -30,34 +30,34 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+//    @Autowired
+//    private UserDetailsServiceImpl userDetailsService;
+//
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService)
+//                .passwordEncoder(new BCryptPasswordEncoder());
+//    }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(new BCryptPasswordEncoder());
-    }
+//    @Bean
+//    public AuthenticationManager getAuthenticationManager(AuthenticationManagerBuilder auth) throws Exception {
+//        return auth.build();
+//    }
 
-    @Bean
-    public AuthenticationManager getAuthenticationManager(AuthenticationManagerBuilder auth) throws Exception {
-        return auth.build();
-    }
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeHttpRequests()
-                // /login 엔드포인트에 대한 POST 요청은 보호되지 않음.
-                .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                // 다른 모든 요청은 보호됨
-                .anyRequest().authenticated();
-
-        return http.build();
-    }
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+////        http.csrf().disable()
+////                .sessionManagement()
+////                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+////                .and()
+////                .authorizeHttpRequests()
+////                // /login 엔드포인트에 대한 POST 요청은 보호되지 않음.
+////                .requestMatchers(HttpMethod.POST, "/login").permitAll()
+////                // 다른 모든 요청은 보호됨
+////                .anyRequest().authenticated();
+//
+//        return http.build();
+//    }
 
 
 
