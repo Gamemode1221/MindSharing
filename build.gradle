@@ -23,7 +23,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -48,7 +48,8 @@ dependencies {
 //	implementation 'com.google.code.gson:gson:2.8.9'
 	implementation 'com.squareup.okhttp3:okhttp:4.9.1'
 	implementation 'com.google.code.gson:gson:2.8.9'
-//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
+	implementation 'io.github.flashvayne:chatgpt-spring-boot-starter:1.0.4'
+//gptapi key : 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
 
 	//OkHttp 라이브러리
 	implementation 'com.squareup.okhttp3:okhttp:4.9.3'
