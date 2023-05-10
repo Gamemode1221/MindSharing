@@ -1,6 +1,6 @@
 #FileLock
-#Wed May 10 15:42:27 KST 2023
-hostName=localhost
-id=18804659a1c33bda994361af28b7e11981978e3fdb2
+#Wed May 10 15:50:56 KST 2023
+hostName=218.38.137.28
+id=188046d547a3b92f2bb34fd16ebb2faffee53c07884
 method=file
-server=localhost\:51223
+server=218.38.137.28\:51279
