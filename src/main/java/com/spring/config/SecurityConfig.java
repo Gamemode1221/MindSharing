@@ -1,5 +1,7 @@
 package com.spring.config;
 
+import com.spring.Service.JwtProvider;
+import com.spring.filter.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -7,10 +9,22 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    private final JwtProvider jwtProvider;
+
+    public SecurityConfig(JwtProvider jwtProvider) {
+        this.jwtProvider = jwtProvider;
+    }
+
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter() {
+        return new JwtAuthenticationFilter(jwtProvider);
+    }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -24,7 +38,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                     // 모든 엔드포인트 요청 수락
                     .requestMatchers("/**").permitAll()
-                .and().build();
+                .and()
+                    .addFilterBefore(jwtAuthenticationFilter(),
+                            UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
     // PasswordEncoder를 createDelegatingPasswordEncoder()로 설정하면
