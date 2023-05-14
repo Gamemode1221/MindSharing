@@ -17,5 +17,5 @@ public class MindSharingApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MindSharingApplication.class, args);
 	}
-
+//.
 }
