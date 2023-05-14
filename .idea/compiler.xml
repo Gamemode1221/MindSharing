@@ -13,8 +13,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="19">
       <module name="com.spring.MindSharing" target="19" />
-      <module name="com.spring.MindSharing.main" target="19" />
-      <module name="com.spring.MindSharing.test" target="19" />
     </bytecodeTargetLevel>
   </component>
 </project>
