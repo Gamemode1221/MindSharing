@@ -22,7 +22,7 @@ public class SignResponse {
 
     private String email;
 
-    private List<Authority> roles = new ArrayList<>();
+//    private List<Authority> roles = new ArrayList<>();
 
     private String token;
 
