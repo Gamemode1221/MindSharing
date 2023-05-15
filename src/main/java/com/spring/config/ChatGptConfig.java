@@ -3,7 +3,7 @@ package com.spring.config;
 public class ChatGptConfig {
     public static final String AUTHORIZATION = "Authorization";
     public static final String BEARER = "Bearer ";
-    public static final String API_KEY = "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";
+    public static final String API_KEY = "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";
     public static final String MODEL = "text-davinci-003";
     public static final Integer MAX_TOKEN = 300;
     public static final Double TEMPERATURE = 0.0;
